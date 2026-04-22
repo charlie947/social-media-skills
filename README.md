@@ -1,93 +1,193 @@
-# Social Media Skills
+# Social Media Skills for AI Agents
 
-The full set of Claude skills behind Charlie Hills' content system. 350,000+ followers across LinkedIn, Instagram, Substack, X, and YouTube. 100m+ views this year. All run through one system that starts with the newsletter and flows out to every other channel.
+The complete set of Claude skills behind Charlie Hills' content system. 350k+ followers across LinkedIn, Instagram, Substack, X and YouTube. 100m+ views per year. All running through one system that starts with the newsletter and flows out to every other channel.
 
-If you want the full story of how this system runs, read the newsletter issue here: https://charliehills.substack.com
+Built by [Charlie Hills](https://charliehills.substack.com). Subscribe to the [MarTech AI newsletter](https://charliehills.substack.com) for weekly breakdowns of how this system works in practice.
 
-## How the system flows
+Want the full story behind the system? Read the [original newsletter issue](https://charliehills.substack.com) that inspired this repo.
+
+**Contributions welcome.** Found a way to improve a skill? [Open a PR](https://github.com/charlie947/social-media-skills/pulls). Run into a problem? [Open an issue](https://github.com/charlie947/social-media-skills/issues).
+
+## What are Skills?
+
+Skills are markdown files that give AI agents specialised knowledge and workflows for specific tasks. When you install these in your project, Claude recognises when you're working on a social media task and applies the right patterns, voice rules, and platform constraints.
+
+## How Skills Work Together
+
+Every skill reads shared context. The `voice-builder` skill is the foundation. Every other skill checks it first (via `about-me.md` and `voice.md`) before drafting a line.
 
 ```
-Newsletter (source)
-    ├── LinkedIn post      (graphic first, then caption, then scored)
-    ├── Instagram Reel     (script, voice, avatar, motion graphics)
-    ├── YouTube thumbnail  (generated before the script)
-    └── Pin comment        (meme caption + image prompt)
+                    ┌──────────────────────────────────────┐
+                    │           voice-builder              │
+                    │   about-me.md + voice.md             │
+                    │   (read by every skill below)        │
+                    └──────────────────┬───────────────────┘
+                                       │
+                    ┌──────────────────▼───────────────────┐
+                    │         newsletter-voice             │
+                    │   newsletter-voice.md                │
+                    │   (the source every piece comes from)│
+                    └──────────────────┬───────────────────┘
+                                       │
+     ┌────────────┬────────────┬───────┴───────┬────────────┬────────────┐
+     ▼            ▼            ▼               ▼            ▼            ▼
+┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────┐ ┌──────────┐ ┌──────────┐
+│ Profile  │ │LinkedIn  │ │ Video    │ │ Analytics &  │ │Community │ │Standalone│
+│          │ │ posts    │ │          │ │ Scoring      │ │          │ │          │
+├──────────┤ ├──────────┤ ├──────────┤ ├──────────────┤ ├──────────┤ ├──────────┤
+│profile-  │ │post-     │ │reels-    │ │post-scorer   │ │pinned-   │ │hook-gen  │
+│ optimizer│ │ writer   │ │ scripting│ │              │ │ comment  │ │content-  │
+│          │ │graphic-  │ │youtube-  │ │analytics-    │ │          │ │ matrix   │
+│          │ │ designer │ │ thumbnail│ │ dashboard    │ │          │ │perplexity│
+│          │ │infogr-gen│ │          │ │              │ │          │ │ -research│
+│          │ │post-form │ │          │ │              │ │          │ │gemini-*  │
+│          │ │          │ │          │ │              │ │          │ │quote-post│
+└──────────┘ └──────────┘ └──────────┘ └──────────────┘ └──────────┘ └──────────┘
 ```
 
-Every skill in this repo plugs into one of those layers.
+See each skill's `SKILL.md` for trigger phrases, inputs, and dependencies.
 
-## Install
+## Available Skills
 
-Each folder is a standalone Claude skill. Zip the folder and upload it to Claude (Customise skills → Upload skill file), or drop the SKILL.md directly into `~/.claude/skills/` if you are running Claude Code.
+<!-- SKILLS:START -->
+| Skill | Description |
+|---|---|
+| [voice-builder](skills/voice-builder/) | Build `about-me.md` and `voice.md` from an interview plus 3 to 5 writing samples. The foundation every other skill reads. |
+| [newsletter-voice](skills/newsletter-voice/) | Add newsletter-specific writing instructions on top of voice-builder. Produces `newsletter-voice.md`. |
+| [profile-optimizer](skills/profile-optimizer/) | Rebuild a LinkedIn profile for conversions. Headline, about, experience, featured section, plus 4 image generation prompts. |
+| [post-writer](skills/post-writer/) | Draft LinkedIn posts in your voice using the voice files. |
+| [graphic-designer](skills/graphic-designer/) | Pick between HTML/CSS graphic and AI-generated infographic based on the post content. |
+| [infographic-generator](skills/infographic-generator/) | The full Claude Code infographic workflow with templates, brand rules, and layout guides. |
+| [post-scorer](skills/post-scorer/) | Pull your post history via Apify and score any draft against what actually performs for you. |
+| [reels-scripting](skills/reels-scripting/) | Reverse-engineer an outlier Reel via Apify + Gemini 2.5 Flash. Write a new script in your voice from your newsletter. |
+| [youtube-thumbnail](skills/youtube-thumbnail/) | Turn a video title into a branded YouTube thumbnail prompt for Gemini. |
+| [pinned-comment](skills/pinned-comment/) | Meme-style pinned comments with a matching image generation prompt. |
+| [hook-generator](skills/hook-generator/) | 6 clickbait-style two-line hook variations per topic. |
+| [post-formatter](skills/post-formatter/) | Topic to ready-to-publish post using PAS, AIDA, BAB, STAR, or SLAY. |
+| [content-matrix](skills/content-matrix/) | Pair your pillars with 8 formats for 32+ post ideas in one table. Justin Welsh style. |
+| [perplexity-research](skills/perplexity-research/) | Surface the 20 most relevant stories in your niche from the last 7 days. |
+| [gemini-infographic](skills/gemini-infographic/) | The whiteboard style that pulled 480k impressions from 3 posts. |
+| [gemini-carousel](skills/gemini-carousel/) | Slide-by-slide carousel generator with an approval gate. |
+| [quote-post](skills/quote-post/) | Claude writes the quote, Gemini recreates the image with the quote baked in. |
+| [analytics-dashboard](skills/analytics-dashboard/) | LinkedIn Analytics export to interactive React dashboard plus 5 data-backed recommendations. |
+<!-- SKILLS:END -->
+
+## Installation
+
+### Option 1: Claude Code plugin marketplace
 
 ```bash
-# Zip a single skill for upload to the Claude desktop app
-cd social-media-skills
-zip -r voice-builder.skill voice-builder
+# Add the marketplace
+/plugin marketplace add charlie947/social-media-skills
 
-# Or copy every skill into Claude Code
-cp -r */ ~/.claude/skills/
+# Install the plugin
+/plugin install social-media-skills
 ```
 
-## Layer 1: Voice foundation
+### Option 2: Clone and copy
 
-Install these first. Every other skill references the files they produce.
+```bash
+git clone https://github.com/charlie947/social-media-skills.git
+cp -r social-media-skills/skills/* ~/.claude/skills/
+```
 
-| Skill | What it does |
+### Option 3: Individual skill upload (Claude Desktop)
+
+Download any skill folder, zip it, and upload via Customise skills in Claude.
+
+```bash
+cd social-media-skills/skills
+zip -r voice-builder.skill voice-builder
+# Upload voice-builder.skill through Customise skills in the Claude app
+```
+
+### Option 4: Git submodule
+
+```bash
+git submodule add https://github.com/charlie947/social-media-skills.git .agents/social-media-skills
+```
+
+Then reference skills from `.agents/social-media-skills/skills/`.
+
+### Option 5: Fork and customise
+
+Fork the repo, swap the voice rules for your own, and clone your fork into your projects.
+
+## Usage
+
+Run `voice-builder` first. Every other skill needs `about-me.md` and `voice.md` to work properly.
+
+Once installed, ask Claude to help with content tasks and it will pick the right skill:
+
+```
+"Build my voice" → voice-builder
+"Write me a post about AI agents" → post-writer
+"Score this draft against my history" → post-scorer
+"Make me a carousel from this" → gemini-carousel
+"What should I post this week" → perplexity-research or content-matrix
+"Turn this outlier Reel into a script" → reels-scripting
+"I need a thumbnail for 'How I fired my team'" → youtube-thumbnail
+"Write me a pinned comment" → pinned-comment
+```
+
+## Skill Categories
+
+### Voice foundation
+- `voice-builder` — interview + sample analysis, writes about-me.md and voice.md
+- `newsletter-voice` — newsletter-specific writing rules on top of voice-builder
+
+### LinkedIn
+- `profile-optimizer` — full profile rebuild
+- `post-writer` — drafts in your voice
+- `graphic-designer` — HTML/CSS graphic or AI infographic, auto-selected
+- `infographic-generator` — Claude Code infographic workflow
+- `post-formatter` — topic to post via named framework (PAS, AIDA, BAB, STAR, SLAY)
+- `hook-generator` — 6 hook variations per topic
+- `post-scorer` — scores drafts against your post history
+- `content-matrix` — pillars x formats ideation
+- `perplexity-research` — 7-day niche research
+- `gemini-infographic` — whiteboard style for Gemini
+- `gemini-carousel` — slide-by-slide carousel
+- `quote-post` — two-step quote workflow
+
+### Instagram Reels
+- `reels-scripting` — Apify + Gemini 2.5 Flash reference analysis, newsletter-aligned script
+
+### YouTube
+- `youtube-thumbnail` — title to Gemini thumbnail prompt
+
+### Community
+- `pinned-comment` — meme-style pin + image prompt
+
+### Analytics
+- `analytics-dashboard` — LinkedIn export to dashboard + 5 recommendations
+
+## Prerequisites
+
+A few skills need external services. Set these environment variables before use:
+
+| Variable | Needed for |
 |---|---|
-| [voice-builder](./voice-builder) | Interview + sample analysis. Writes `about-me.md` and `voice.md` into your project root |
-| [newsletter-voice](./newsletter-voice) | Adds newsletter-specific rules on top of voice-builder. Writes `newsletter-voice.md` |
+| `APIFY_API_TOKEN` | post-scorer, reels-scripting |
+| `GOOGLE_AI_API_KEY` | reels-scripting (Gemini 2.5 Flash video analysis) |
 
-Run voice-builder first. Then newsletter-voice.
+Set them with:
 
-## Layer 2: LinkedIn
+```bash
+export APIFY_API_TOKEN=your_token
+export GOOGLE_AI_API_KEY=your_key
+```
 
-The graphic-first workflow: design the visual before you write the caption, then score the whole thing against your own post history.
+The image generation skills (`gemini-infographic`, `gemini-carousel`, `quote-post`, `youtube-thumbnail`, `profile-optimizer`) output ready-to-paste prompts. You run them in a separate Gemini chat with Create Image enabled. No API key needed.
 
-| Skill | What it does |
-|---|---|
-| [profile-optimizer](./profile-optimizer) | Rebuilds headline, about, experience, featured section, plus 4 image generation prompts |
-| [post-writer](./post-writer) | Drafts posts in your voice using the voice files |
-| [graphic-designer](./graphic-designer) | Picks between HTML/CSS graphic or AI-generated infographic |
-| [infographic-generator](./infographic-generator) | The full Claude Code infographic workflow with templates, brand rules, and layout guides |
-| [post-scorer](./post-scorer) | Pulls your post history via Apify and scores any draft against what actually works for you |
+## Contributing
 
-Run profile-optimizer first. Traffic from posts lands on your profile, so fix that before shipping.
+PRs and issues welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding or improving skills.
 
-## Layer 3: Video
-
-| Skill | What it does |
-|---|---|
-| [reels-scripting](./reels-scripting) | Reverse-engineers an outlier Reel via Apify + Gemini 2.5 Flash, then writes a new script in your voice from your newsletter |
-| [youtube-thumbnail](./youtube-thumbnail) | Builds a branded YouTube thumbnail before you write the script |
-
-## Layer 4: Community
-
-| Skill | What it does |
-|---|---|
-| [pinned-comment](./pinned-comment) | Writes the pinned meme comment plus an image generation prompt |
-
-## Standalone LinkedIn skills
-
-Smaller skills for specific jobs. Install the ones you need.
-
-| Skill | What it does |
-|---|---|
-| [hook-generator](./hook-generator) | Six clickbait-style hook variations per topic |
-| [post-formatter](./post-formatter) | Turns a topic into a ready-to-publish post using PAS, AIDA, BAB, STAR, or SLAY frameworks |
-| [content-matrix](./content-matrix) | Pairs pillars with 8 formats for 32+ post ideas in one table |
-| [perplexity-research](./perplexity-research) | Surfaces the 20 most relevant stories in your niche from the last 7 days |
-| [gemini-infographic](./gemini-infographic) | The whiteboard prompt that pulled 480k impressions from 3 posts |
-| [gemini-carousel](./gemini-carousel) | Branded slide-by-slide carousel generator with approval step |
-| [quote-post](./quote-post) | Claude writes the quote, Gemini recreates the image with the quote baked in |
-| [analytics-dashboard](./analytics-dashboard) | Turns a LinkedIn export into a scatter plot, audience breakdown, growth projection, and 5 data-backed recommendations |
-
-## Shortcut: use Stanley
-
-If setting up this stack sounds like a lot, Stanley runs the whole Layer 2 flow for you. Give it a topic, get back a post in your voice with a matching graphic. 14-day free trial: https://www.stanleyhq.com
+Run `./validate-skills.sh` before submitting to check your skill against the spec.
 
 ## License
 
-MIT. Do whatever you like with these. If they help you, a link back to the newsletter is appreciated.
+[MIT](LICENSE). Use these however you like. If they help you, a link back to the [newsletter](https://charliehills.substack.com) is appreciated.
 
-— Charlie Hills
+— Charlie
