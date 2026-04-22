@@ -58,7 +58,7 @@ Run profile-optimizer first. Traffic from posts lands on your profile, so fix th
 
 | Skill | What it does |
 |---|---|
-| [linkedin-to-reels](./linkedin-to-reels) | Repurposes top LinkedIn posts into Instagram Reel scripts |
+| [reels-scripting](./reels-scripting) | Reverse-engineers an outlier Reel via Apify + Gemini 2.5 Flash, then writes a new script in your voice from your newsletter |
 | [youtube-thumbnail](./youtube-thumbnail) | Builds a branded YouTube thumbnail before you write the script |
 
 ## Layer 4: Community
