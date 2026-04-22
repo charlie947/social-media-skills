@@ -41,7 +41,7 @@ Every skill reads shared context. The `voice-builder` skill is the foundation. E
 │ optimizer│ │ writer   │ │ scripting│ │              │ │ comment  │ │content-  │
 │          │ │graphic-  │ │youtube-  │ │analytics-    │ │          │ │ matrix   │
 │          │ │ designer │ │ thumbnail│ │ dashboard    │ │          │ │niche-    │
-│          │ │infogr-gen│ │          │ │              │ │          │ │ research │
+│          │ │          │ │          │ │              │ │          │ │ research │
 │          │ │post-form │ │          │ │              │ │          │ │gemini-*  │
 │          │ │          │ │          │ │              │ │          │ │quote-post│
 └──────────┘ └──────────┘ └──────────┘ └──────────────┘ └──────────┘ └──────────┘
@@ -59,7 +59,6 @@ See each skill's `SKILL.md` for trigger phrases, inputs, and dependencies.
 | [profile-optimizer](skills/profile-optimizer/) | Rebuild a LinkedIn profile for conversions. Headline, about, experience, featured section, plus 4 image generation prompts. |
 | [post-writer](skills/post-writer/) | Draft LinkedIn posts in your voice using the voice files. |
 | [graphic-designer](skills/graphic-designer/) | Pick between HTML/CSS graphic and AI-generated infographic based on the post content. |
-| [infographic-generator](skills/infographic-generator/) | The full Claude Code infographic workflow with templates, brand rules, and layout guides. |
 | [post-scorer](skills/post-scorer/) | Pull your post history via Apify and score any draft against what actually performs for you. |
 | [reels-scripting](skills/reels-scripting/) | Reverse-engineer an outlier Reel via Apify + Gemini 2.5 Flash. Write a new script in your voice from your newsletter. |
 | [youtube-thumbnail](skills/youtube-thumbnail/) | Turn a video title into a branded YouTube thumbnail prompt for Gemini. |
@@ -142,7 +141,6 @@ Once installed, ask Claude to help with content tasks and it will pick the right
 - `profile-optimizer` — full profile rebuild
 - `post-writer` — drafts in your voice
 - `graphic-designer` — HTML/CSS graphic or AI infographic, auto-selected
-- `infographic-generator` — Claude Code infographic workflow
 - `post-formatter` — topic to post via named framework (PAS, AIDA, BAB, STAR, SLAY)
 - `hook-generator` — 6 hook variations per topic
 - `post-scorer` — scores drafts against your post history

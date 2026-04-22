@@ -12,7 +12,6 @@ Initial release. 18 skills covering the full content system documented in the Ma
 - profile-optimizer
 - post-writer
 - graphic-designer
-- infographic-generator
 - post-scorer
 - post-formatter
 - hook-generator
