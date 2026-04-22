@@ -58,14 +58,14 @@ Run profile-optimizer first. Traffic from posts lands on your profile, so fix th
 
 | Skill | What it does |
 |---|---|
-| reels-scripting | Scripts Instagram Reels from newsletter content, using outlier reels as reference |
-| youtube-thumbnail | Builds a branded YouTube thumbnail before you write the script |
+| [linkedin-to-reels](./linkedin-to-reels) | Repurposes top LinkedIn posts into Instagram Reel scripts |
+| [youtube-thumbnail](./youtube-thumbnail) | Builds a branded YouTube thumbnail before you write the script |
 
 ## Layer 4: Community
 
 | Skill | What it does |
 |---|---|
-| pinned-comment | Writes the pinned meme comment plus an image generation prompt |
+| [pinned-comment](./pinned-comment) | Writes the pinned meme comment plus an image generation prompt |
 
 ## Standalone LinkedIn skills
 
@@ -73,14 +73,14 @@ Smaller skills for specific jobs. Install the ones you need.
 
 | Skill | What it does |
 |---|---|
-| hook-generator | Six clickbait-style hook variations per topic |
-| post-formatter | Turns a topic into a ready-to-publish post using PAS, AIDA, BAB, STAR, or SLAY frameworks |
-| content-matrix | Pairs pillars with 8 formats for 32+ post ideas in one table |
-| perplexity-research | Surfaces the 20 most relevant stories in your niche from the last 7 days |
-| gemini-infographic | The whiteboard prompt that pulled 480k impressions from 3 posts |
-| gemini-carousel | Branded slide-by-slide carousel generator with approval step |
-| quote-post | Claude writes the quote, Gemini recreates the image with the quote baked in |
-| analytics-dashboard | Turns a LinkedIn export into a scatter plot, audience breakdown, growth projection, and 5 data-backed recommendations |
+| [hook-generator](./hook-generator) | Six clickbait-style hook variations per topic |
+| [post-formatter](./post-formatter) | Turns a topic into a ready-to-publish post using PAS, AIDA, BAB, STAR, or SLAY frameworks |
+| [content-matrix](./content-matrix) | Pairs pillars with 8 formats for 32+ post ideas in one table |
+| [perplexity-research](./perplexity-research) | Surfaces the 20 most relevant stories in your niche from the last 7 days |
+| [gemini-infographic](./gemini-infographic) | The whiteboard prompt that pulled 480k impressions from 3 posts |
+| [gemini-carousel](./gemini-carousel) | Branded slide-by-slide carousel generator with approval step |
+| [quote-post](./quote-post) | Claude writes the quote, Gemini recreates the image with the quote baked in |
+| [analytics-dashboard](./analytics-dashboard) | Turns a LinkedIn export into a scatter plot, audience breakdown, growth projection, and 5 data-backed recommendations |
 
 ## Shortcut: use Stanley
 
