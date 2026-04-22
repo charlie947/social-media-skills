@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" role="img" aria-label="Social Media Skills by Charlie Hills">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0A2347" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00132F" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#00132F" stop-opacity="0.85"/>
+    </linearGradient>
+    <style>
+      .t-title { font: 700 76px 'Space Grotesk', 'Helvetica Neue', system-ui, sans-serif; fill: #FFFFFF; letter-spacing: -2px; }
+      .t-sub   { font: 500 26px 'Space Grotesk', 'Helvetica Neue', system-ui, sans-serif; fill: #58B6FF; letter-spacing: -0.3px; }
+      .t-meta  { font: 500 18px 'Space Grotesk', 'Helvetica Neue', system-ui, sans-serif; fill: #8FBEE8; letter-spacing: 0.5px; text-transform: uppercase; }
+      .chip    { font: 600 18px 'Space Grotesk', 'Helvetica Neue', system-ui, sans-serif; fill: #FFFFFF; letter-spacing: 0.3px; }
+    </style>
+  </defs>
+
+  <rect width="1280" height="360" fill="#00132F"/>
+  <rect width="1280" height="360" fill="url(#grid)"/>
+  <rect width="1280" height="360" fill="url(#fade)"/>
+
+  <g transform="translate(72, 92)">
+    <text class="t-meta" x="0" y="0">Claude Skills · by Charlie Hills</text>
+    <text class="t-title" x="0" y="78">Social Media Skills</text>
+    <text class="t-sub" x="0" y="130">The 18 skills behind 350k followers and 100M+ views a year</text>
+  </g>
+
+  <g transform="translate(72, 280)">
+    <g>
+      <rect x="0" y="0" width="130" height="40" rx="20" fill="#58B6FF"/>
+      <text class="chip" x="65" y="26" text-anchor="middle" fill="#00132F">LinkedIn</text>
+    </g>
+    <g transform="translate(142, 0)">
+      <rect x="0" y="0" width="100" height="40" rx="20" fill="#3366FF"/>
+      <text class="chip" x="50" y="26" text-anchor="middle">Reels</text>
+    </g>
+    <g transform="translate(254, 0)">
+      <rect x="0" y="0" width="120" height="40" rx="20" fill="#73E9C1"/>
+      <text class="chip" x="60" y="26" text-anchor="middle" fill="#00132F">YouTube</text>
+    </g>
+    <g transform="translate(386, 0)">
+      <rect x="0" y="0" width="130" height="40" rx="20" fill="#FFD11A"/>
+      <text class="chip" x="65" y="26" text-anchor="middle" fill="#00132F">Analytics</text>
+    </g>
+    <g transform="translate(528, 0)">
+      <rect x="0" y="0" width="130" height="40" rx="20" fill="#DB8FFF"/>
+      <text class="chip" x="65" y="26" text-anchor="middle" fill="#00132F">Newsletter</text>
+    </g>
+  </g>
+
+  <g transform="translate(980, 80)" opacity="0.9">
+    <circle cx="100" cy="100" r="98" fill="none" stroke="#58B6FF" stroke-width="2"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#58B6FF" stroke-width="2" stroke-dasharray="4 6"/>
+    <circle cx="100" cy="100" r="42" fill="#58B6FF" opacity="0.15"/>
+    <circle cx="100" cy="100" r="14" fill="#58B6FF"/>
+    <text class="t-meta" x="100" y="244" text-anchor="middle" fill="#8FBEE8">voice-builder · the foundation</text>
+  </g>
+</svg>

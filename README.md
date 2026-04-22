@@ -1,10 +1,12 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="Social Media Skills by Charlie Hills" width="100%"/>
+</p>
+
 # Social Media Skills for AI Agents
 
 The complete set of Claude skills behind Charlie Hills' content system. 350k+ followers across LinkedIn, Instagram, Substack, X and YouTube. 100m+ views per year. All running through one system that starts with the newsletter and flows out to every other channel.
 
 Built by [Charlie Hills](https://charliehills.substack.com). Subscribe to the [MarTech AI newsletter](https://charliehills.substack.com) for weekly breakdowns of how this system works in practice.
-
-Want the full story behind the system? Read the [original newsletter issue](https://charliehills.substack.com) that inspired this repo.
 
 **Contributions welcome.** Found a way to improve a skill? [Open a PR](https://github.com/charlie947/social-media-skills/pulls). Run into a problem? [Open an issue](https://github.com/charlie947/social-media-skills/issues).
 
