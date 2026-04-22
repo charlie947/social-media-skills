@@ -1,5 +1,5 @@
 ---
-name: linkedin-pinned-comment
+name: pinned-comment
 description: Write LinkedIn pinned comments AND image generation prompts in Charlie Hills' signature style. Use when Charlie or his team asks for a pinned comment, pin comment, or first comment for a LinkedIn post. ALWAYS produce the image prompt FIRST, then caption it with the 4-line comment. Output both together unless told otherwise.
 ---
 
