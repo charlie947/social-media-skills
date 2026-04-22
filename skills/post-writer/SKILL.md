@@ -1,7 +1,7 @@
 ---
 name: post-writer
 description: >
-  Write LinkedIn posts that match the user's voice system (about-me.md, voice.md, voice.md). Use this skill whenever the user says "write a post", "draft a post", "LinkedIn post", "post about [topic]", "content idea", or wants help writing any LinkedIn content. Also trigger when the user pastes a context dump (notes, transcripts, bullet points) and wants it turned into a post. Always references the voice files in the project before writing. Always outputs the final post in a code block.
+  Write LinkedIn posts that match the user's voice system (about-me.md and voice.md). Use this skill whenever the user says "write a post", "draft a post", "LinkedIn post", "post about [topic]", "content idea", or wants help writing any LinkedIn content. Also trigger when the user pastes a context dump (notes, transcripts, bullet points) and wants it turned into a post. Always references the voice files in the project before writing. Always outputs the final post in a code block.
 ---
 
 # Post Writer
@@ -12,9 +12,9 @@ The moment this skill triggers, go straight to Step 1. Do not summarise the skil
 
 ## Step 1. Gather inputs
 
-Check the project for about-me.md, voice.md, and voice.md. Read all three. If any are missing, tell the user to run the Voice Builder skill first ("say build my voice"), then stop.
+Check the project for about-me.md and voice.md. Read both. If either is missing, tell the user to run the Voice Builder skill first ("say build my voice"), then stop.
 
-If all three files exist, call AskUserQuestion with this exact JSON:
+If both files exist, call AskUserQuestion with this exact JSON:
 
 ```json
 [
@@ -89,10 +89,10 @@ Fill in the actual angle options based on the topic research. Do not use placeho
 ## Step 3. Write the draft
 
 Write the post following these rules:
-- Read voice.md for tone, rhythm, hook style, CTA style
-- Read voice.md and avoid every banned word, structure, and pattern
+- Read voice.md for tone, rhythm, hook style, CTA style, and the absence patterns section (what the voice never does)
 - Read about-me.md for audience and topic context
 - Match the sentence length and paragraph rhythm from voice.md
+- Avoid every banned word, structure, and pattern listed in voice.md's absence section
 - Use the hook pattern that fits the chosen angle
 - End with the CTA style from voice.md
 
@@ -120,7 +120,7 @@ Then say:
 
 ## Rules
 
-- Always read about-me.md, voice.md, and voice.md before writing.
+- Always read about-me.md and voice.md before writing.
 - Always output posts in a plain code block.
 - Never use em dashes in any post.
 - British English unless voice.md says otherwise.

@@ -117,7 +117,7 @@ Based on their data:
 
 - Did the user actually write this or does it read like unedited AI output?
 - Would this post blend naturally into their feed based on their posting history?
-- Are there any red flags: banned words from voice.md, generic phrases, corporate tone?
+- Are there any red flags: banned words listed in voice.md's absence patterns, generic phrases, corporate tone?
 - Is it the right length compared to their top performers?
 
 ## Step 5. Output the scorecard
