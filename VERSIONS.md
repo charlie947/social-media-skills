@@ -17,7 +17,7 @@ Initial release. 18 skills covering the full content system documented in the Ma
 - post-formatter
 - hook-generator
 - content-matrix
-- perplexity-research
+- niche-research
 - gemini-infographic
 - gemini-carousel
 - quote-post

@@ -40,8 +40,8 @@ Every skill reads shared context. The `voice-builder` skill is the foundation. E
 │profile-  │ │post-     │ │reels-    │ │post-scorer   │ │pinned-   │ │hook-gen  │
 │ optimizer│ │ writer   │ │ scripting│ │              │ │ comment  │ │content-  │
 │          │ │graphic-  │ │youtube-  │ │analytics-    │ │          │ │ matrix   │
-│          │ │ designer │ │ thumbnail│ │ dashboard    │ │          │ │perplexity│
-│          │ │infogr-gen│ │          │ │              │ │          │ │ -research│
+│          │ │ designer │ │ thumbnail│ │ dashboard    │ │          │ │niche-    │
+│          │ │infogr-gen│ │          │ │              │ │          │ │ research │
 │          │ │post-form │ │          │ │              │ │          │ │gemini-*  │
 │          │ │          │ │          │ │              │ │          │ │quote-post│
 └──────────┘ └──────────┘ └──────────┘ └──────────────┘ └──────────┘ └──────────┘
@@ -67,7 +67,7 @@ See each skill's `SKILL.md` for trigger phrases, inputs, and dependencies.
 | [hook-generator](skills/hook-generator/) | 6 clickbait-style two-line hook variations per topic. |
 | [post-formatter](skills/post-formatter/) | Topic to ready-to-publish post using PAS, AIDA, BAB, STAR, or SLAY. |
 | [content-matrix](skills/content-matrix/) | Pair your pillars with 8 formats for 32+ post ideas in one table. Justin Welsh style. |
-| [perplexity-research](skills/perplexity-research/) | Surface the 20 most relevant stories in your niche from the last 7 days. |
+| [niche-research](skills/niche-research/) | Drive Claude for Chrome to scroll Reddit, X, and Google with verified dates. Surfaces the 20 most relevant stories in your niche from the last 7 days. |
 | [gemini-infographic](skills/gemini-infographic/) | The whiteboard style that pulled 480k impressions from 3 posts. |
 | [gemini-carousel](skills/gemini-carousel/) | Slide-by-slide carousel generator with an approval gate. |
 | [quote-post](skills/quote-post/) | Claude writes the quote, Gemini recreates the image with the quote baked in. |
@@ -126,7 +126,7 @@ Once installed, ask Claude to help with content tasks and it will pick the right
 "Write me a post about AI agents" → post-writer
 "Score this draft against my history" → post-scorer
 "Make me a carousel from this" → gemini-carousel
-"What should I post this week" → perplexity-research or content-matrix
+"What should I post this week" → niche-research or content-matrix
 "Turn this outlier Reel into a script" → reels-scripting
 "I need a thumbnail for 'How I fired my team'" → youtube-thumbnail
 "Write me a pinned comment" → pinned-comment
@@ -147,7 +147,7 @@ Once installed, ask Claude to help with content tasks and it will pick the right
 - `hook-generator` — 6 hook variations per topic
 - `post-scorer` — scores drafts against your post history
 - `content-matrix` — pillars x formats ideation
-- `perplexity-research` — 7-day niche research
+- `niche-research` — 7-day niche research via Claude for Chrome
 - `gemini-infographic` — whiteboard style for Gemini
 - `gemini-carousel` — slide-by-slide carousel
 - `quote-post` — two-step quote workflow
