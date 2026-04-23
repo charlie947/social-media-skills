@@ -2,7 +2,7 @@
 
 ## 1.0.0 — 2026-04-22
 
-Initial release. 18 skills covering the full content system documented in the MarTech AI newsletter.
+Initial release. 17 skills covering the full content system documented in the MarTech AI newsletter.
 
 **Voice foundation**
 - voice-builder
