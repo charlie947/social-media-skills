@@ -67,6 +67,7 @@ See each skill's `SKILL.md` for trigger phrases, inputs, and dependencies.
 | [post-formatter](skills/post-formatter/) | Topic to ready-to-publish post using PAS, AIDA, BAB, STAR, or SLAY. |
 | [content-matrix](skills/content-matrix/) | Pair your pillars with 8 formats for 32+ post ideas in one table. Justin Welsh style. |
 | [niche-research](skills/niche-research/) | Drive Claude for Chrome to scroll Reddit, X, and Google with verified dates. Surfaces the 20 most relevant stories in your niche from the last 7 days. |
+| [x-signal-research](skills/x-signal-research/) | Search X with Hermes Tweet, read threads and replies, look up users, export followers, and turn evidence into content angles. |
 | [gemini-infographic](skills/gemini-infographic/) | The whiteboard style that pulled 480k impressions from 3 posts. |
 | [gemini-carousel](skills/gemini-carousel/) | Slide-by-slide carousel generator with an approval gate. |
 | [quote-post](skills/quote-post/) | Claude writes the quote, Gemini recreates the image with the quote baked in. |
@@ -134,33 +135,34 @@ Once installed, ask Claude to help with content tasks and it will pick the right
 ## Skill Categories
 
 ### Voice foundation
-- `voice-builder` — interview + sample analysis, writes about-me.md and voice.md
-- `newsletter-voice` — newsletter-specific writing rules on top of voice-builder
+- `voice-builder` - interview + sample analysis, writes about-me.md and voice.md
+- `newsletter-voice` - newsletter-specific writing rules on top of voice-builder
 
 ### LinkedIn
-- `profile-optimizer` — full profile rebuild
-- `post-writer` — drafts in your voice
-- `graphic-designer` — HTML/CSS graphic or AI infographic, auto-selected
-- `post-formatter` — topic to post via named framework (PAS, AIDA, BAB, STAR, SLAY)
-- `hook-generator` — 6 hook variations per topic
-- `post-scorer` — scores drafts against your post history
-- `content-matrix` — pillars x formats ideation
-- `niche-research` — 7-day niche research via Claude for Chrome
-- `gemini-infographic` — whiteboard style for Gemini
-- `gemini-carousel` — slide-by-slide carousel
-- `quote-post` — two-step quote workflow
+- `profile-optimizer` - full profile rebuild
+- `post-writer` - drafts in your voice
+- `graphic-designer` - HTML/CSS graphic or AI infographic, auto-selected
+- `post-formatter` - topic to post via named framework (PAS, AIDA, BAB, STAR, SLAY)
+- `hook-generator` - 6 hook variations per topic
+- `post-scorer` - scores drafts against your post history
+- `content-matrix` - pillars x formats ideation
+- `niche-research` - 7-day niche research via Claude for Chrome
+- `x-signal-research` - Hermes Tweet backed X signal research for posts, launches and creators
+- `gemini-infographic` - whiteboard style for Gemini
+- `gemini-carousel` - slide-by-slide carousel
+- `quote-post` - two-step quote workflow
 
 ### Instagram Reels
-- `reels-scripting` — Apify + Gemini 2.5 Flash reference analysis, newsletter-aligned script
+- `reels-scripting` - Apify + Gemini 2.5 Flash reference analysis, newsletter-aligned script
 
 ### YouTube
-- `youtube-thumbnail` — title to Gemini thumbnail prompt
+- `youtube-thumbnail` - title to Gemini thumbnail prompt
 
 ### Community
-- `pinned-comment` — meme-style pin + image prompt
+- `pinned-comment` - meme-style pin + image prompt
 
 ### Analytics
-- `analytics-dashboard` — LinkedIn export to dashboard + 5 recommendations
+- `analytics-dashboard` - LinkedIn export to dashboard + 5 recommendations
 
 ## Prerequisites
 
@@ -170,6 +172,7 @@ A few skills need external services. Set these environment variables before use:
 |---|---|
 | `APIFY_API_TOKEN` | post-scorer, reels-scripting |
 | `GOOGLE_AI_API_KEY` | reels-scripting (Gemini 2.5 Flash video analysis) |
+| `XQUIK_API_KEY` | x-signal-research |
 
 Set them with:
 
@@ -190,4 +193,4 @@ Run `./validate-skills.sh` before submitting to check your skill against the spe
 
 [MIT](LICENSE). Use these however you like. If they help you, a link back to the [newsletter](https://charliehills.substack.com) is appreciated.
 
-— Charlie
+- Charlie

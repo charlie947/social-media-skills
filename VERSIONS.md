@@ -1,6 +1,15 @@
 # Versions
 
-## 1.0.0 — 2026-04-22
+## 1.1.0 - 2026-05-23
+
+Added `x-signal-research` for Hermes Tweet backed X research:
+
+- Search X for niche, launch and creator signals
+- Read threads and replies for customer language
+- Look up users and export followers when useful
+- Turn evidence into LinkedIn, X, newsletter and video angles
+
+## 1.0.0 - 2026-04-22
 
 Initial release. 17 skills covering the full content system documented in the MarTech AI newsletter.
 
