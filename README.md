@@ -180,6 +180,11 @@ export GOOGLE_AI_API_KEY=your_key
 
 The image generation skills (`gemini-infographic`, `gemini-carousel`, `quote-post`, `youtube-thumbnail`, `profile-optimizer`) output ready-to-paste prompts. You run them in a separate Gemini chat with Create Image enabled. No API key needed.
 
+If you run these skills through OpenClaw, the `niche-research` skill can also
+use the [TweetClaw OpenClaw plugin](https://github.com/Xquik-dev/tweetclaw) as
+an optional X/Twitter evidence source while browser or web tools cover Reddit
+and Google.
+
 ## Contributing
 
 PRs and issues welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding or improving skills.

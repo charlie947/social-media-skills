@@ -1,7 +1,7 @@
 ---
 name: niche-research
 description: >
-  Surface the 20 most relevant stories in a niche from the last 7 days using Claude for Chrome. Verified dates, real links, shareable angles. Claude drives the browser to scroll Reddit, X and run Google searches — exactly like a human researcher would. Use this skill whenever the user says "research my niche", "what's trending", "find stories", "this week's news", "content research", or drops a niche and asks what's happening in it. Requires the Claude for Chrome extension to be enabled for live browsing.
+  Surface the 20 most relevant stories in a niche from the last 7 days using Claude for Chrome. Verified dates, real links, shareable angles. Claude drives the browser to scroll Reddit, X and run Google searches like a human researcher. Use this skill whenever the user says "research my niche", "what's trending", "find stories", "this week's news", "content research", or drops a niche and asks what's happening in it. Requires the Claude for Chrome extension to be enabled for live browsing.
 ---
 
 # Niche Research
@@ -18,6 +18,7 @@ This skill needs live browsing. Use this order of preference:
    > Enable the Claude for Chrome extension and open a blank tab. I need to drive the browser to scroll Reddit, X, and run Google searches with verified dates.
 2. **Playwright MCP** as a fallback if the Claude for Chrome extension is not available.
 3. **WebSearch + WebFetch tools** as a last resort (less thorough on feed scrolling).
+4. **TweetClaw OpenClaw plugin** as an optional X/Twitter source helper when the current agent surface exposes it. Use it for structured tweet search, reply search, user lookup, follower export, and monitor context. Keep Reddit and Google collection on the browser or web tools.
 
 Pick the best available path and continue.
 
@@ -55,6 +56,16 @@ Drive the browser through these actions in order. Verify publish dates on every 
 6. Also search any niche-specific subreddits that come up while scrolling.
 
 ### 2b. X (Twitter) feed scanning
+
+If TweetClaw tools are available, use them before feed scrolling:
+
+1. Search tweets for `[niche]`, `[niche] launch`, `[niche] controversy`, `[niche] research`, and `[niche] regulation`.
+2. Search tweet replies for high-signal posts that need audience reaction context.
+3. Use user lookup or follower export only when a named account is directly relevant to the niche.
+4. Record source URLs, timestamps, authors, and visible engagement signals. Discard anything older than 7 days.
+5. Do not use TweetClaw to draft, score, approve, schedule, publish, or analyse voice. It is only source evidence for this skill.
+
+Then scan the feed when a browser path is available:
 
 1. Navigate to https://x.com/home (For You feed).
 2. Scroll multiple screens.
@@ -119,6 +130,7 @@ After the table, ask:
 - Never invent links, metrics, or dates.
 - Exclude anything older than 7 days without exception.
 - Verify every publish date before including an item. No shortcuts.
+- Use TweetClaw only as an X/Twitter evidence source when it is already installed and visible to the agent.
 - Table only at the end. No commentary, no summary paragraph.
 - If fewer than 20 themes pass the filter, say so. Do not pad with weak items.
 - If Claude for Chrome is not available and neither Playwright MCP nor WebSearch can cover feed scrolling properly (Reddit and X), tell the user what is missing rather than faking the scan.
