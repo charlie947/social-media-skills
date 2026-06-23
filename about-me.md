@@ -1,7 +1,7 @@
 # About Me
 
 > Quick-reference profile read by every skill. The full, canonical source is
-> [`VOICE_PROFILE_SAL_v2.md`](VOICE_PROFILE_SAL_v2.md). When they disagree, the v2 profile wins.
+> [`foundations/VOICE_PROFILE_SAL_v2.md`](foundations/VOICE_PROFILE_SAL_v2.md). When they disagree, the v2 profile wins.
 
 ## Name and role
 Sal — a growth marketer who thinks like an operator and builds like an engineer. I build (and break) growth systems: lifecycle, distribution, data, and AI, so teams can ship measurable GTM without the hype.

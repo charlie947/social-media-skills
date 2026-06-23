@@ -16,11 +16,11 @@ This repo is wired as a personal social media management agent. The orchestratio
 [`CLAUDE.md`](CLAUDE.md) — read it first. The flow:
 
 1. **Foundations** the agent reads before writing anything:
-   - [`about-me.md`](about-me.md) + [`voice.md`](voice.md) — quick voice reference every skill auto-loads
-   - [`VOICE_PROFILE_SAL_v2.md`](VOICE_PROFILE_SAL_v2.md) — the canonical deep voice profile (source of truth)
-   - [`ANTI AI WRITING STYLE.md`](ANTI%20AI%20WRITING%20STYLE.md) — AI writing tells to scrub
-   - [`COPYWRITING.md`](COPYWRITING.md) — persuasion frameworks
-   - [`CLAUDE PROMPTING COOKBOOK.md`](CLAUDE%20PROMPTING%20COOKBOOK.md) — prompting reference
+   - [`about-me.md`](about-me.md) + [`voice.md`](voice.md) — quick voice reference every skill auto-loads (kept at root for skill compatibility)
+   - [`foundations/VOICE_PROFILE_SAL_v2.md`](foundations/VOICE_PROFILE_SAL_v2.md) — the canonical deep voice profile (source of truth)
+   - [`foundations/ANTI AI WRITING STYLE.md`](foundations/ANTI%20AI%20WRITING%20STYLE.md) — AI writing tells to scrub
+   - [`foundations/COPYWRITING.md`](foundations/COPYWRITING.md) — persuasion frameworks
+   - [`foundations/CLAUDE PROMPTING COOKBOOK.md`](foundations/CLAUDE%20PROMPTING%20COOKBOOK.md) — prompting reference
 2. **Skills** in [`skills/`](skills/) — the agent routes each request to the right one (see the table in `CLAUDE.md`).
 3. **Output** — everything produced is saved to [`output/`](output/), sorted by channel/type and named `YYYY-MM-DD__channel__type__slug`. See [`output/README.md`](output/README.md).
 

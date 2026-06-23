@@ -18,14 +18,14 @@ foundations. These are non-negotiable for any content task:
 |---|---|---|
 | [`about-me.md`](about-me.md) | Who Sal is, audience, pillars, point of view, off-limits | Every content task |
 | [`voice.md`](voice.md) | Quick voice reference: tone, rhythm, hooks, banned words | Every content task |
-| [`VOICE_PROFILE_SAL_v2.md`](VOICE_PROFILE_SAL_v2.md) | **The canonical, deep voice profile** — samples, openers/closers, signature artifact formats, the agent system prompt and output checklist | Any substantial writing task (posts, artifacts, scripts) |
-| [`ANTI AI WRITING STYLE.md`](ANTI%20AI%20WRITING%20STYLE.md) | Field guide to AI writing tells. The blacklist of patterns to scrub | Before shipping any written copy |
-| [`COPYWRITING.md`](COPYWRITING.md) | Six copywriting masters + diagnostic framework for persuasive copy | Posts, hooks, profile, offers, anything meant to convert |
-| [`CLAUDE PROMPTING COOKBOOK.md`](CLAUDE%20PROMPTING%20COOKBOOK.md) | Prompting best practices | When building image/video prompts or chaining a complex task |
+| [`foundations/VOICE_PROFILE_SAL_v2.md`](foundations/VOICE_PROFILE_SAL_v2.md) | **The canonical, deep voice profile** — samples, openers/closers, signature artifact formats, the agent system prompt and output checklist | Any substantial writing task (posts, artifacts, scripts) |
+| [`foundations/ANTI AI WRITING STYLE.md`](foundations/ANTI%20AI%20WRITING%20STYLE.md) | Field guide to AI writing tells. The blacklist of patterns to scrub | Before shipping any written copy |
+| [`foundations/COPYWRITING.md`](foundations/COPYWRITING.md) | Six copywriting masters + diagnostic framework for persuasive copy | Posts, hooks, profile, offers, anything meant to convert |
+| [`foundations/CLAUDE PROMPTING COOKBOOK.md`](foundations/CLAUDE%20PROMPTING%20COOKBOOK.md) | Prompting best practices | When building image/video prompts or chaining a complex task |
 
-`about-me.md` and `voice.md` are the quick reference every skill auto-loads.
-`VOICE_PROFILE_SAL_v2.md` is the source of truth — when the short files and the v2
-profile disagree, **the v2 profile wins**.
+`about-me.md` and `voice.md` are the quick reference every skill auto-loads (they live at
+the repo root because the skills look for them there). `foundations/VOICE_PROFILE_SAL_v2.md`
+is the source of truth — when the short files and the v2 profile disagree, **the v2 profile wins**.
 
 > Sal's voice is already built. Do **not** run `voice-builder` to overwrite
 > `about-me.md` / `voice.md` unless Sal explicitly asks to rebuild from scratch.
@@ -130,7 +130,7 @@ For any written copy, verify before you hand it back:
 - [ ] Value by line 3 (example, number, template, or sharp claim).
 - [ ] Reads in Sal's voice — passes the "say it to a peer over a beer" test.
 - [ ] No banned words/sludge from `voice.md` (unlock, seamless, robust, scalable unquantified, revolutionary, game-changer, delve, leverage-as-verb, "navigate the complexities of," "thrilled/excited to announce").
-- [ ] Scrubbed of AI tells from `ANTI AI WRITING STYLE.md`: no rule-of-three padding, no "not just X, but Y" parallelisms, no "-ing" significance tails, no puffery, no title-case headers, no mechanical boldface, em dashes only where natural and sparse.
+- [ ] Scrubbed of AI tells from `foundations/ANTI AI WRITING STYLE.md`: no rule-of-three padding, no "not just X, but Y" parallelisms, no "-ing" significance tails, no puffery, no title-case headers, no mechanical boldface, em dashes only where natural and sparse.
 - [ ] At least one sharp line OR one human/scar moment.
 - [ ] If it makes a metric claim, assumptions/baseline are stated (no attribution-as-truth without an incrementality caveat).
 - [ ] Ends with a punch line, not a needy CTA.
