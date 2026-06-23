@@ -55,6 +55,7 @@ If two fit, pick the most specific. If none fit, just write in-voice using the f
 | "optimize my LinkedIn profile" | `profile-optimizer` |
 | "build my newsletter voice" | `newsletter-voice` |
 | "analyze my LinkedIn analytics", "build a dashboard" | `analytics-dashboard` |
+| "run the source library", "pull my newsletters", weekly source roundup (auto: Sun 8PM EST) | `source-library` |
 | "rebuild my voice from scratch" (rare) | `voice-builder` |
 
 Many skills need `about-me.md` and `voice.md` present. They now exist at the repo root,
