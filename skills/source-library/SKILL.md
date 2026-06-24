@@ -19,9 +19,13 @@ is missing or a credential fails.
 
 ## Prerequisites
 
-- **Gmail MCP** (`mcp__Gmail__search_threads`, `mcp__Gmail__get_thread`) — load via ToolSearch.
-- **Notion MCP** (`mcp__Notion__notion-query-data-sources`, `mcp__Notion__notion-create-pages`,
-  `mcp__Notion__notion-fetch`) — load via ToolSearch.
+- **Gmail MCP** (`mcp__Gmail__search_threads`, `mcp__Gmail__get_thread`, `mcp__Gmail__list_labels`,
+  `mcp__Gmail__create_label`, `mcp__Gmail__label_thread`) — load via ToolSearch.
+- **Notion MCP** (`mcp__Notion__notion-create-pages`, `mcp__Notion__notion-fetch`) — load via ToolSearch.
+
+> **Plan note (verified live):** this workspace's Notion is *not* on a Business plan, so
+> `notion-query-data-sources` and `notion-query-database-view` return a 400 plan-gate error.
+> Do **not** rely on them. Dedup is handled in Gmail (Step 2), not by querying Notion.
 
 If either server is disconnected, tell Sal which one and stop — do not partially run.
 
@@ -51,10 +55,14 @@ NOTION DATABASE  : 🔍 Source Inbox
 
 ## Step 1 — Fetch source emails (Gmail)
 
-Call `mcp__Gmail__search_threads` with `pageSize: 50` and this query:
+First ensure the dedup label exists: call `mcp__Gmail__list_labels`; if `Filed/SourceInbox`
+isn't there, create it with `mcp__Gmail__create_label` (displayName `Filed/SourceInbox`). Grab its label id.
+
+Then call `mcp__Gmail__search_threads` with `pageSize: 50` and this query (note the
+`-label:` exclusion — that's the dedup, see Step 2):
 
 ```
-from:(kieranflanagan@substack.com OR gtmstrategist@substack.com OR cannonballgtm@substack.com OR team@demandcurve.com OR mkt1@substack.com OR lenny@substack.com OR elenaverna@substack.com) newer_than:10d
+from:(kieranflanagan@substack.com OR gtmstrategist@substack.com OR cannonballgtm@substack.com OR team@demandcurve.com OR mkt1@substack.com OR lenny@substack.com OR elenaverna@substack.com) newer_than:10d -label:Filed/SourceInbox
 ```
 
 - **No threads found** → exit cleanly. Post a one-line "0 new sources this week" summary. This is success, not failure.
@@ -66,24 +74,34 @@ For each thread, you'll need the full body — fetch it with `mcp__Gmail__get_th
 Build the Gmail permalink for each thread as:
 `https://mail.google.com/mail/u/0/#all/<threadId>` — this is the `URL` stored in Notion.
 
-## Step 2 — Dedup against Notion
+## Step 2 — Dedup via Gmail label
 
-Before processing, pull existing entries so a retry or the overlapping 10-day window never
-double-files. Query the Source Inbox data source for recent rows and collect their `URL`
-values:
+Dedup is done in Gmail, not Notion (the Notion query tools are plan-gated here). The mechanism:
 
-- Use `mcp__Notion__notion-query-data-sources` against `collection://31b00cfe-6b78-8015-9be8-000be9d99d6d`,
-  selecting `userDefined:URL` and `Name`, sorted by `Captured At` desc (last ~100 rows is plenty for a 10-day window).
-- Build a set of seen URLs. Skip any thread whose permalink is already in the set.
+- The Step 1 query already excludes `-label:Filed/SourceInbox`, so any thread filed by a
+  previous run never comes back. That's the whole dedup — the overlapping 10-day window and
+  any retry are both covered.
+- **After a successful Notion write (Step 3c), label that thread** `Filed/SourceInbox` with
+  `mcp__Gmail__label_thread`. This is what makes the run idempotent. If the Notion write
+  fails, do NOT label — so it gets retried next run.
+- Discarded (low-signal) emails: still label them `Filed/SourceInbox` so they aren't
+  re-evaluated every week. (Optionally use a separate `Filed/SourceInbox-Rejected` label if
+  Sal wants to audit rejects; default to the single label.)
 
-If the query fails, don't abort — proceed without dedup but flag it in the summary so Sal
-can spot-check for duplicates.
+No Notion read is needed or possible. If `label_thread` fails, flag it in the summary so the
+thread can be labeled manually (otherwise it re-files next week).
 
 ## Step 3 — Per-email loop
 
-For each non-duplicate thread (up to 50), run 3a → 3b → 3c. These are independent per email;
-you may fan them out with the Agent tool (one sub-agent per email) to run in parallel — but
-keep all Notion writes idempotent via the dedup set.
+For each thread the Step 1 query returned (up to 50), run 3a → 3b → 3c → 3d. These are
+independent per email; you may fan out the clean step (3a) with the Agent tool (one Haiku
+sub-agent per email) to run in parallel. Always do the Gmail label (3d) only after a
+confirmed Notion write so the run stays idempotent.
+
+> **Big emails:** `get_thread` on a newsletter can exceed the tool output limit (a real one
+> hit ~124K chars). When that happens the result is saved to a file path instead — hand that
+> path to the Haiku sub-agent in 3a and have it extract the body with jq/python. Don't try to
+> read the raw thread into your own context.
 
 ### 3a — Clean & structure (cheap model)
 
@@ -198,8 +216,13 @@ Properties:
 | `Tier`                 | 3b `Tier` as string `"0"` / `"1"` / `"2"` |
 | `Tags`                 | JSON array, mapped to the DB's fixed vocab (see mapping below) |
 | `Status`               | `"New"` (hardcoded) |
-| `date:Captured At:start` | run timestamp (ISO-8601, set `date:Captured At:is_datetime` = 1) |
+| `date:Captured At:start` | run date `YYYY-MM-DD` |
+| `date:Captured At:is_datetime` | numeric `0` (date-only). **Must be the number `0` or `1`, not a string** — a string `"0"` returns a 400. |
 | `userDefined:URL`      | Gmail thread permalink from Step 1 |
+
+> Gotchas verified live: `Tier` is a string (`"1"`), `Tags` is a JSON-array string
+> (`"[\"Guide\", \"Reference\"]"`), `is_datetime` is a bare number, and the URL property key
+> is literally `userDefined:URL`.
 
 **Tags mapping** — the DB `Tags` is a fixed content-type vocabulary
 `[Article, Video, Tutorial, Research, Reference, News, Analysis, Guide, Review]`, NOT free
@@ -233,7 +256,12 @@ Pick 1–3. The rich `Topics`/`Tactics` tags from 3b live in the page body (belo
 [3a full cleaned Markdown]
 ```
 
-Add the URL to the dedup set after a successful write so parallel/retried runs stay idempotent.
+### 3d — Label the thread (dedup)
+
+After `notion-create-pages` returns a page id (confirmed write), call
+`mcp__Gmail__label_thread` on that thread with the `Filed/SourceInbox` label id. This is what
+keeps the routine idempotent — a labeled thread is excluded from next week's Step 1 query.
+Discarded emails get labeled too (Step 2). Never label before the write succeeds.
 
 ## Step 4 — Report
 
@@ -255,5 +283,7 @@ Keep it scannable. No play-by-play of the loop.
   the original Relay cost design.
 - **Default to reject.** A near-empty Source Inbox of only Tier-0/1 entries beats a full one
   of generic advice.
-- **Idempotent by URL.** The Gmail permalink is the dedup key; never write the same URL twice.
+- **Idempotent by Gmail label.** `Filed/SourceInbox` is the dedup key (Notion query tools are
+  plan-gated here). Label only after a confirmed Notion write; the Gmail permalink is still
+  stored on each entry as the canonical link back.
 - **Scheduling** is configured outside this skill — see `SCHEDULE.md` in this folder.
