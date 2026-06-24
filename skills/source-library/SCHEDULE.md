@@ -24,8 +24,8 @@ CRON:     0 20 * * 0
      ```
      Run the source-library skill. Pull the last 10 days of newsletters from Gmail,
      dedup against Notion, clean + analyze each, file new high-signal sources into the
-     Source Inbox database (Status = New), write the weekly digest to output/research/,
-     and reply with the summary. This is the scheduled Sunday run — run unattended.
+     Source Inbox database (Status = New), and reply with the run summary. This is the
+     scheduled Sunday run — run unattended.
      ```
 4. Ensure the environment's **network policy** allows the Gmail and Notion MCP servers, and
    that both are authenticated in the environment (the same OAuth connections used interactively).
@@ -35,8 +35,7 @@ CRON:     0 20 * * 0
 
 After a scheduled run, check:
 - **Notion → 🔍 Source Inbox**, view **"Agent Query - New by Tier"** — new rows with `Status = New`.
-- **Repo** → `output/research/<date>__general__research__source-library-weekly.md` — the digest.
-- The session transcript — the Step 5 summary (`N found · M new · R rejected · D duplicates`).
+- The session transcript — the Step 4 run summary (`N found · M new · R rejected · D duplicates`).
 
 ## Manual run anytime
 
@@ -50,5 +49,3 @@ A `.github/workflows/source-library.yml` on `schedule: cron: "0 0 * * 1"` (00:00
 `ANTHROPIC_API_KEY` plus Gmail/Notion credentials as Actions secrets and a headless MCP setup.
 Skipped for now in favor of the web Scheduled Session, which reuses this environment's existing
 authenticated MCP connections. Ask if you want this wired up.
-```
-```

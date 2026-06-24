@@ -235,18 +235,10 @@ Pick 1–3. The rich `Topics`/`Tactics` tags from 3b live in the page body (belo
 
 Add the URL to the dedup set after a successful write so parallel/retried runs stay idempotent.
 
-## Step 4 — Local mirror (repo convention)
+## Step 4 — Report
 
-Per CLAUDE.md, every deliverable also lands in `output/`. Write a weekly digest to:
-
-```
-output/research/YYYY-MM-DD__general__research__source-library-weekly.md
-```
-
-With the standard metadata header (`type: research`, `skill: source-library`, `status: approved`)
-and a table of what was captured: Title · Source · Pillar · Tier · Tags · Notion link.
-
-## Step 5 — Report
+The Notion Source Inbox is the only persistent destination — this skill does **not** write a
+local `output/` file (Sal's choice: the DB is the source of truth, no repo mirror).
 
 Post a tight summary in chat (and it's the scheduled-run output):
 - `N found · M new · R rejected (low-signal) · D duplicates skipped`
