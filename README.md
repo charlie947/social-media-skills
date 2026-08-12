@@ -10,6 +10,23 @@ Built by [Charlie Hills](https://charliehills.substack.com). Subscribe to the [M
 
 **Contributions welcome.** Found a way to improve a skill? [Open a PR](https://github.com/charlie947/social-media-skills/pulls). Run into a problem? [Open an issue](https://github.com/charlie947/social-media-skills/issues).
 
+## Sal's setup (start here)
+
+This repo is wired as a personal social media management agent. The orchestration lives in
+[`CLAUDE.md`](CLAUDE.md) — read it first. The flow:
+
+1. **Foundations** the agent reads before writing anything:
+   - [`about-me.md`](about-me.md) + [`voice.md`](voice.md) — quick voice reference every skill auto-loads (kept at root for skill compatibility)
+   - [`foundations/voice-profile-sal-v2.md`](foundations/voice-profile-sal-v2.md) — the canonical deep voice profile (source of truth)
+   - [`foundations/anti-ai-writing-style.md`](foundations/anti-ai-writing-style.md) — AI writing tells to scrub
+   - [`foundations/copywriting.md`](foundations/copywriting.md) — persuasion frameworks
+   - [`foundations/claude-prompting-cookbook.md`](foundations/claude-prompting-cookbook.md) — prompting reference
+2. **Skills** in [`skills/`](skills/) — the agent routes each request to the right one (see the table in `CLAUDE.md`).
+3. **Output** — everything produced is saved to [`output/`](output/), sorted by channel/type and named `YYYY-MM-DD__channel__type__slug`. See [`output/README.md`](output/README.md).
+
+The skills below are the generic toolkit (credited to their original author). The voice,
+anti-AI rules, output structure, and routing are Sal's layer on top.
+
 ## What are Skills?
 
 Skills are markdown files that give AI agents specialised knowledge and workflows for specific tasks. When you install these in your project, Claude recognises when you're working on a social media task and applies the right patterns, voice rules, and platform constraints.
