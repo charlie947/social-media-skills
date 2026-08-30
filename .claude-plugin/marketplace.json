@@ -4,33 +4,42 @@
     "name": "Charlie Hills",
     "url": "https://charliehills.substack.com"
   },
+  "metadata": {
+    "description": "Social media research, writing, design, scoring, and analytics skills for AI agents."
+  },
   "plugins": [
     {
       "name": "social-media-skills",
-      "source": ".",
-      "description": "The complete set of Claude skills behind Charlie Hills' content system. 430k+ followers across LinkedIn, Instagram, Substack, X and YouTube. 100m+ views per year. 17 skills covering voice, LinkedIn, Instagram Reels, YouTube thumbnails, analytics, and community.",
-      "version": "1.0.1",
-      "metadata": {
-        "categories": [
-          "voice",
-          "linkedin",
-          "reels",
-          "youtube",
-          "analytics",
-          "community"
-        ],
-        "tags": [
-          "content creation",
-          "linkedin growth",
-          "instagram reels",
-          "infographics",
-          "gemini",
-          "apify",
-          "elevenlabs",
-          "heygen",
-          "remotion"
-        ]
-      }
+      "source": "./",
+      "description": "The complete set of Claude skills behind Charlie Hills' content system. 430k+ followers across LinkedIn, Instagram, Substack, X and YouTube. 100m+ views per year. 18 skills covering voice, LinkedIn, Instagram Reels, YouTube thumbnails, research, analytics, and community.",
+      "version": "1.1.0",
+      "author": {
+        "name": "Charlie Hills",
+        "url": "https://charliehills.substack.com"
+      },
+      "category": "productivity",
+      "homepage": "https://github.com/charlie947/social-media-skills",
+      "keywords": [
+        "content creation",
+        "linkedin growth",
+        "instagram reels",
+        "social media research",
+        "xquik",
+        "gemini",
+        "apify",
+        "elevenlabs",
+        "heygen",
+        "remotion"
+      ],
+      "tags": [
+        "voice",
+        "linkedin",
+        "reels",
+        "youtube",
+        "research",
+        "analytics",
+        "community"
+      ]
     }
   ]
 }
