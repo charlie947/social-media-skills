@@ -1,20 +1,20 @@
 ---
 name: newsletter-voice
 description: >
-  Build newsletter writing instructions inside a Cowork project. Runs after voice-builder. Produces newsletter-voice.md, a single file Claude references when drafting newsletters in the user's voice. Works with or without existing newsletter samples: if the user has past issues, the skill analyses them; if not, the skill offers 6 archetypes tuned to the user's voice. Trigger whenever the user says "build my newsletter voice", "learn my newsletter style", "set up my newsletter system", "train on my newsletters", "newsletter onboarding", or drops newsletter samples into chat asking for an analysis. Requires voice-builder to have run first: the skill needs voice.md and about-me.md in the project to work.
+  Build newsletter writing instructions inside your project or workspace. Works with any LLM agent. Runs after voice-builder. Produces newsletter-voice.md, a single file the agent references when drafting newsletters in the user's voice. Works with or without existing newsletter samples: if the user has past issues, the skill analyses them; if not, the skill offers 6 archetypes tuned to the user's voice. Trigger whenever the user says "build my newsletter voice", "learn my newsletter style", "set up my newsletter system", "train on my newsletters", "newsletter onboarding", or drops newsletter samples into chat asking for an analysis. Requires voice-builder to have run first: the skill needs the project voice files (about-me.md and voice.md, or the equivalent voice files your project uses) to work.
 ---
 
 # Newsletter Voice
 
 ## Prerequisites check
 
-The moment this skill is triggered, check the project root for voice.md and about-me.md.
+The moment this skill is triggered, check the project root for the voice files. These are usually named voice.md and about-me.md, but a project may use different filenames for the same purpose. Look for those two, and if they are absent, scan for any equivalent voice or about files in the project root before deciding they are missing.
 
-If either file is missing, tell the user:
+If they are genuinely missing, tell the user:
 
-> Newsletter voice sits on top of your general voice profile. Run voice-builder first (upload the skill or say "build my voice"), then come back here once about-me.md and voice.md are in the project.
+> Newsletter voice sits on top of your general voice profile. Run voice-builder first (say "build my voice"), then come back here once your voice files (about-me.md and voice.md) are in the project.
 
-Then stop. Do not continue until both files exist.
+Then stop. Do not continue until the voice files exist.
 
 If both files exist, read them fully, then go straight to Step 1.
 
@@ -83,7 +83,7 @@ Then go to Step 3.
 
 ## Step 2b. Archetype selection
 
-Call the AskUserQuestion tool with a single question:
+Ask the user this question. If your agent has an interactive multiple-choice tool (for example Claude's `AskUserQuestion`), use it; otherwise ask it in chat with the same options:
 
 ```json
 [
@@ -170,3 +170,9 @@ One file in the project root:
 - Do not produce a separate voice or banned-words file. Absence patterns live inside newsletter-voice.md as a single section.
 - British English throughout unless samples are clearly American.
 - Never use em dashes in any output file or in any draft.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `get_brand_assets` — pull the tenant's brand tone and messaging pillars to tune the archetype defaults before writing `newsletter-voice.md`. Treat the result as a draft the user confirms.

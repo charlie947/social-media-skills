@@ -24,13 +24,13 @@ The scorer needs two things: the user's voice system and real performance data.
 
 ### Voice system
 
-Read about-me.md and voice.md from the project if they exist. If missing, note it and score without voice matching.
+Read about-me.md and voice.md from the project if they exist (or the equivalent voice files your project uses). If missing, note it and score without voice matching.
 
 ### Performance data
 
 Check for cached LinkedIn data in the project or outputs folder. Look for files matching *-all-posts.json or *-posts.txt.
 
-If cached data exists, use it. If not, ask the user:
+If cached data exists, use it. If not, ask the user how to get it (use an interactive multiple-choice tool such as Claude's `AskUserQuestion` if your agent has one, otherwise ask in chat with the same options):
 
 ```json
 [
@@ -188,3 +188,9 @@ Comment gate rate: 5%
 - Never use em dashes in any output.
 - British English throughout.
 - Keep the scorecard compact. It needs to look good on a big screen at events.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `get_analytics` / `analyze_campaigns` — pull the tenant's real post performance as the scoring profile instead of scraping with Apify. Build the top-10% patterns in Step 3 from this data and cite it in every fix.

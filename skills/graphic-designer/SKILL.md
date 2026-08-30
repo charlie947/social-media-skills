@@ -16,7 +16,7 @@ Check the project for the most recent post file. If found, read it. If not, say:
 
 > Paste the post you want a graphic for.
 
-Wait for the post, then call AskUserQuestion:
+Wait for the post, then ask the user which style they want. If your agent has an interactive multiple-choice tool (for example Claude's `AskUserQuestion`), use it; otherwise ask in chat with the same options:
 
 ```json
 [
@@ -26,8 +26,8 @@ Wait for the post, then call AskUserQuestion:
     "multiSelect": false,
     "options": [
       {"label": "HTML/CSS graphic", "description": "Clean structured layout. Framework, comparison, steps, data. Fully editable, screenshot to export."},
-      {"label": "Whiteboard infographic", "description": "Hand-drawn marker style on a whiteboard or notebook page. Recaps the post visually. Generated in Gemini."},
-      {"label": "Branded infographic", "description": "Professional infographic using your brand colours. Recaps the post visually. Generated in Gemini."},
+      {"label": "Whiteboard infographic", "description": "Hand-drawn marker style on a whiteboard or notebook page. Recaps the post visually. Generated in an image model such as Gemini."},
+      {"label": "Branded infographic", "description": "Professional infographic using your brand colours. Recaps the post visually. Generated in an image model such as Gemini."},
       {"label": "You decide", "description": "Analyse the post and pick the best format automatically"}
     ]
   }
@@ -147,3 +147,10 @@ Say:
 - Branded style: always clean, flat, modern, using the user's brand colours.
 - Never use em dashes in any output.
 - British English throughout.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `get_brand_assets` — pull the tenant's brand colours and fonts for Path A (HTML/CSS) and the branded infographic instead of asking for hex codes.
+- `create_canva_design` / `generate_ad_creative` — render the Path B image prompt directly instead of the user pasting it into an external image generator.

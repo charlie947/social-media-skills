@@ -22,7 +22,7 @@ If a reference photo path is stored, pre-fill it. Otherwise ask:
 
 > Upload or provide the path to the reference photo of yourself you want used in the thumbnail. Ideally a clear headshot with distinctive lighting and expression you plan to reuse across videos for brand consistency.
 
-Then call AskUserQuestion:
+Then ask the user the questions below. If your agent has an interactive multiple-choice tool (for example Claude's `AskUserQuestion`), use it; otherwise ask them in chat with the same options:
 
 ```json
 [
@@ -114,7 +114,7 @@ Constraints:
 
 Tell the user:
 
-> Paste this into a new Gemini chat, attach your reference photo, enable Create Image, and select Nano Banana. Generate at 1280x720.
+> Paste this into your image generator and attach your reference photo (Gemini works well: enable Create Image and select Nano Banana). Generate at 1280x720.
 
 ## Step 5. Offer the next move
 
@@ -130,3 +130,10 @@ Tell the user:
 - British English unless voice.md specifies otherwise.
 - If brand-kit.md is in the project, read it and use exact brand colours.
 - Recommend the user keep a consistent thumbnail style across videos for channel recognition.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `get_brand_assets` — pull the tenant's brand colours for the thumbnail palette instead of reading brand-kit.md.
+- `create_canva_design` / `generate_ad_creative` — render the thumbnail prompt directly instead of the user pasting it into an external image generator.

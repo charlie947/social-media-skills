@@ -35,7 +35,7 @@ Ask:
 
 Wait for the URL.
 
-If the user pastes a Notion link, follow it via WebFetch, locate the Instagram Reel URL on the page, and extract it. If no Reel URL is found on the Notion page, ask the user to paste the Reel URL directly.
+If the user pastes a Notion link, fetch it with whatever web-fetch capability your agent has, locate the Instagram Reel URL on the page, and extract it. If no Reel URL is found on the Notion page, ask the user to paste the Reel URL directly.
 
 ## Step 2. Get the newsletter topic
 
@@ -188,7 +188,7 @@ After the script is approved, offer:
 > Two paths from here:
 >
 > 1. Record it yourself.
-> 2. Auto-generate with ElevenLabs (voice) + HeyGen (avatar) + Remotion (motion graphics). If you have the my-video project configured, run `npm run pipeline:claude-routines` with this script config.
+> 2. Auto-generate with a text-to-speech tool (voice) + an avatar tool (for example HeyGen) + a motion-graphics renderer (for example Remotion). If you have a video-generation pipeline configured, pass this script config to it.
 
 ## Rules
 
@@ -198,4 +198,11 @@ After the script is approved, offer:
 - British English. No em dashes. No semicolons.
 - Every script deliverable includes the exact caption and comment trigger alongside the script. Never deliver just the script.
 - If the reference Reel scrape fails across all three actor variants, report the failure and stop. Do not fabricate analysis.
-- Gemini 2.5 Flash is the model. Do not substitute without the user's approval.
+- Gemini 2.5 Flash is the video-analysis model. Do not substitute without the user's approval.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `create_canva_design` / `generate_ad_creative` — produce a Reel cover or thumbnail from the hook once the script is approved.
+- `publish_social_post` — publish the finished Reel and caption to Instagram. Confirm the caption and comment trigger before publishing.

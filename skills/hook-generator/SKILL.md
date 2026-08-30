@@ -87,3 +87,9 @@ Ask:
 - Prefer digits over spelled numbers (3, not three).
 - British English unless voice.md says otherwise.
 - Never hedge. A weak hook is worse than no hook.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- No direct Dopa tool. Hooks feed the post-writer or post-formatter skill, which can then publish via `publish_social_post`.

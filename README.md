@@ -4,7 +4,7 @@
 
 # Social Media Skills for AI Agents
 
-The complete set of Claude skills behind Charlie Hills' content system. 415k+ followers across LinkedIn, Instagram, Substack, X and YouTube. 100m+ views per year. All running through one system that starts with the newsletter and flows out to every other channel.
+The complete set of skills behind Charlie Hills' content system. 415k+ followers across LinkedIn, Instagram, Substack, X and YouTube. 100m+ views per year. All running through one system that starts with the newsletter and flows out to every other channel.
 
 Built by [Charlie Hills](https://charliehills.substack.com). Subscribe to the [MarTech AI newsletter](https://charliehills.substack.com) for weekly breakdowns of how this system works in practice.
 
@@ -12,7 +12,13 @@ Built by [Charlie Hills](https://charliehills.substack.com). Subscribe to the [M
 
 ## What are Skills?
 
-Skills are markdown files that give AI agents specialised knowledge and workflows for specific tasks. When you install these in your project, Claude recognises when you're working on a social media task and applies the right patterns, voice rules, and platform constraints.
+Skills are markdown files that give AI agents specialised knowledge and workflows for specific tasks. When you install these in your project, your agent recognises when you're working on a social media task and applies the right patterns, voice rules, and platform constraints.
+
+## Platform support
+
+These skills are platform-agnostic. They are written for any capable LLM agent (Claude, Gemini, DeepSeek, OpenRouter models, and others), not just Claude. Where a skill needs a capability like an interactive question form or browser automation, it names Claude's tool as one example and falls back to plain chat or web search when that tool is not present.
+
+Teams running on the [Dopa](https://dopa.solutions) platform can wire the skills to native tools (publish, image generation, brand assets, analytics) through an **optional** adapter. See [dopa-adaptation.md](dopa-adaptation.md) and the "Dopa integration (optional)" section at the bottom of each skill. The adapter is additive: it changes nothing for Claude or any other agent.
 
 ## How Skills Work Together
 

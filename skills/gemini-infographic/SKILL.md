@@ -78,3 +78,10 @@ After the prompt, offer:
 - Always wait for user approval of the brief before outputting the final prompt.
 - British English unless voice.md says otherwise.
 - If the user has brand-kit.md or colours.md in the project, bake their brand colours into the visual suggestions.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `get_brand_assets` — pull the tenant's brand colours for the visual suggestions instead of reading brand-kit.md.
+- `create_canva_design` / `generate_ad_creative` — render the infographic prompt directly instead of the user pasting it into an external image generator.
