@@ -1,5 +1,10 @@
 # Versions
 
+## 1.1.0 - 2026-08-31
+
+Added `x-signal-monitor` for read-first X research through Xquik Apify Actors.
+Repaired the Claude plugin marketplace manifest for current schema validation.
+
 ## 1.0.0 — 2026-04-22
 
 Initial release. 17 skills covering the full content system documented in the MarTech AI newsletter.

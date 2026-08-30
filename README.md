@@ -67,6 +67,7 @@ See each skill's `SKILL.md` for trigger phrases, inputs, and dependencies.
 | [post-formatter](skills/post-formatter/) | Topic to ready-to-publish post using PAS, AIDA, BAB, STAR, or SLAY. |
 | [content-matrix](skills/content-matrix/) | Pair your pillars with 8 formats for 32+ post ideas in one table. Justin Welsh style. |
 | [niche-research](skills/niche-research/) | Drive Claude for Chrome to scroll Reddit, X, and Google with verified dates. Surfaces the 20 most relevant stories in your niche from the last 7 days. |
+| [x-signal-monitor](skills/x-signal-monitor/) | Monitor X accounts, keywords, hashtags, and competitors with Xquik Apify Actors. |
 | [gemini-infographic](skills/gemini-infographic/) | The whiteboard style that pulled 480k impressions from 3 posts. |
 | [gemini-carousel](skills/gemini-carousel/) | Slide-by-slide carousel generator with an approval gate. |
 | [quote-post](skills/quote-post/) | Claude writes the quote, Gemini recreates the image with the quote baked in. |
@@ -126,6 +127,7 @@ Once installed, ask Claude to help with content tasks and it will pick the right
 "Score this draft against my history" → post-scorer
 "Make me a carousel from this" → gemini-carousel
 "What should I post this week" → niche-research or content-matrix
+"Monitor X signals for my niche" → x-signal-monitor
 "Turn this outlier Reel into a script" → reels-scripting
 "I need a thumbnail for 'How I fired my team'" → youtube-thumbnail
 "Write me a pinned comment" → pinned-comment
@@ -146,6 +148,7 @@ Once installed, ask Claude to help with content tasks and it will pick the right
 - `post-scorer` — scores drafts against your post history
 - `content-matrix` — pillars x formats ideation
 - `niche-research` — 7-day niche research via Claude for Chrome
+- `x-signal-monitor` — X accounts, keywords, hashtags, competitors, and audiences via Xquik
 - `gemini-infographic` — whiteboard style for Gemini
 - `gemini-carousel` — slide-by-slide carousel
 - `quote-post` — two-step quote workflow
@@ -168,7 +171,7 @@ A few skills need external services. Set these environment variables before use:
 
 | Variable | Needed for |
 |---|---|
-| `APIFY_API_TOKEN` | post-scorer, reels-scripting |
+| `APIFY_API_TOKEN` | post-scorer, reels-scripting, x-signal-monitor Actor route |
 | `GOOGLE_AI_API_KEY` | reels-scripting (Gemini 2.5 Flash video analysis) |
 
 Set them with:
@@ -179,6 +182,8 @@ export GOOGLE_AI_API_KEY=your_key
 ```
 
 The image generation skills (`gemini-infographic`, `gemini-carousel`, `quote-post`, `youtube-thumbnail`, `profile-optimizer`) output ready-to-paste prompts. You run them in a separate Gemini chat with Create Image enabled. No API key needed.
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
 
 ## Contributing
 
