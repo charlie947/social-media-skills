@@ -84,7 +84,7 @@ Recreate the attached reference image with the following quote:
 Critical constraints:
 - Output at exactly 1080 x 1350 pixels (4:5 vertical)
 - Match the style, typography, and colour palette of the reference image
-- Keep the quote as the focal point — centred and legible
+- Keep the quote as the focal point, centred and legible
 - Attribute nothing (no names, no handles, no logos)
 - Maintain the visual tone of the original but with the new text
 
@@ -93,7 +93,7 @@ The quote must be perfectly spelled and punctuated exactly as written above.
 
 Tell the user:
 
-> Paste this into a new Gemini chat with the reference image attached. Create Image mode, Nano Banana model, 1080x1350 output.
+> Paste this into your image generator with the reference image attached (Gemini works well: Create Image mode, Nano Banana model). Generate at 1080x1350.
 
 ## Step 5. Honest expectation-setting
 
@@ -110,3 +110,10 @@ After the prompt, add:
 - British English unless voice.md specifies otherwise.
 - Tune the quote options to the user's voice if voice.md exists.
 - If the user's voice is explicitly not motivational (analytical, contrarian-only, dry), flag the mismatch and ask if quote posts suit their positioning before generating.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `create_canva_design` / `generate_ad_creative` — render the quote graphic directly instead of the user pasting the prompt into an external image generator.
+- `publish_social_post` — publish the quote graphic and caption to LinkedIn once the user approves.

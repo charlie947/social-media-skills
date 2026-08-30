@@ -34,7 +34,7 @@ Clean any messy headers. Merge the two TOP POSTS tables (by engagements and by i
 
 ## Step 3. Build the interactive dashboard
 
-Create a single React artifact. Dark theme (background `#0f1117`), accent colours for charts. Use Recharts for all visualisations.
+Create a single self-contained interactive React dashboard. Render it as an artifact if your agent supports them; otherwise write a standalone file (for example `linkedin-dashboard.html` or a `.jsx` file) the user can open. Dark theme (background `#0f1117`), accent colours for charts. Use Recharts for all visualisations.
 
 Include these panels in this order:
 
@@ -133,3 +133,9 @@ After the analysis:
 - Never use em dashes.
 - British English unless voice.md specifies otherwise.
 - Recommend running this monthly. Patterns only surface over time.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `get_analytics` / `analyze_campaigns` — pull the tenant's metrics directly to build the dashboard instead of the user uploading a LinkedIn Analytics export. Flag any panels the returned data cannot fill rather than inventing figures.

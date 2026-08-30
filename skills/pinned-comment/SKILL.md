@@ -26,8 +26,8 @@ This is why image generation comes FIRST. Always.
 ### Step 1. Find the admission
 
 Every Charlie post hides one quiet confession. Examples:
-- "Cowork does most of my actual job now"
-- "I am embarrassingly dependent on Anthropic"
+- "My AI assistant does most of my actual job now"
+- "I am embarrassingly dependent on my AI tools"
 - "I gave away a 9-month product for free"
 - "I am a sponsored creator who lost objectivity"
 
@@ -38,9 +38,9 @@ Write the admission as one sentence before doing anything else.
 
 Three rules for the image:
 
-1. **One clear visual gag.** The eye lands on it in under a second. Examples that worked: tie draped on a laptop keyboard, a shrine to Anthropic with a rose and candles, a banquet table where every other seat is a tech logo.
+1. **One clear visual gag.** The eye lands on it in under a second. Examples that worked: tie draped on a laptop keyboard, a shrine to the creator's AI tool with a rose and candles, a banquet table where every other seat is a tech logo.
 2. **Played completely straight.** No winking. No thumbs up. No exaggerated faces. The humour comes from treating the absurd as normal.
-3. **Charlie is the lower-status figure.** Always. Claude wins. The logo wins. The mum wins. Charlie loses with quiet dignity.
+3. **Charlie is the lower-status figure.** Always. The AI wins. The logo wins. The mum wins. Charlie loses with quiet dignity.
 
 Use the standard format:
 
@@ -89,12 +89,12 @@ If any test fails, fix before sending.
 
 This is the benchmark. When in doubt, compare new comments against this one.
 
-**The image:** Charlie sitting cross-legged on the floor in striped pyjamas eating cereal from a bowl, looking up at his own desk chair where an open laptop sits with a knotted necktie draped over the keyboard. A framed "Employee of the Month" certificate on the wall has the Claude logo and the name "Claude (Anthropic)" on it. Morning light, played completely straight.
+**The image:** Charlie sitting cross-legged on the floor in striped pyjamas eating cereal from a bowl, looking up at his own desk chair where an open laptop sits with a knotted necktie draped over the keyboard. A framed "Employee of the Month" certificate on the wall carries the logo and name of the AI tool the creator uses. Morning light, played completely straight.
 
 **The comment:**
 
 ```
-📌 Claude wears the tie now.
+📌 The AI wears the tie now.
 I wear the pyjamas.
 The cereal was my idea, at least.
 Small wins where you find them.
@@ -113,9 +113,9 @@ Small wins where you find them.
 ## OTHER PROVEN IMAGE GAGS (for reference)
 
 - **Status reversal at the desk:** Laptop in the chair wearing a tie, Charlie on the floor in pyjamas
-- **The shrine:** Candles, a rose, a framed Anthropic logo, a handwritten letter "To Dario", Charlie kneeling in prayer
+- **The shrine:** Candles, a rose, a framed logo of the creator's AI tool, a handwritten letter addressed to the AI lab, Charlie kneeling in prayer
 - **The banquet table:** Charlie at the head of the table with a paper crown, every other seat occupied by a tech logo (Stanford, Google, OpenAI, Anthropic, Microsoft)
-- **The therapist's couch:** Charlie reclining looking happy, therapist looking concerned, Claude logo framed on the wall behind her
+- **The therapist's couch:** Charlie reclining looking happy, therapist looking concerned, the AI tool's logo framed on the wall behind her
 - **The boardroom:** Charlie pointing at a presentation, every "executive" in the room is a tech logo
 - **The pub vs the home office:** Charlie smug at a pub table while his laptop visibly works through a window across the street
 
@@ -144,3 +144,12 @@ When triggered, always output:
 4. **A one-line note** confirming the comment passed the 5 tests
 
 Optionally provide 2-3 variations if the first attempt is borderline.
+
+---
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `create_canva_design` / `generate_ad_creative` — render the image prompt directly instead of the user pasting it into an external image generator.
+- `publish_social_post` — post the 4-line comment as the first comment on the published LinkedIn post once the user approves.

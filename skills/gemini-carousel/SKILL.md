@@ -16,7 +16,7 @@ Ask:
 
 > Paste the content you want in the carousel. A post, section of a newsletter, research notes, or a framework all work.
 
-Wait for the content, then call AskUserQuestion:
+Wait for the content, then ask the user the questions below. If your agent has an interactive multiple-choice tool (for example Claude's `AskUserQuestion`), use it; otherwise ask them in chat with the same options:
 
 ```json
 [
@@ -119,3 +119,10 @@ After the per-slide prompts, offer:
 - Never use em dashes.
 - British English unless voice.md specifies otherwise.
 - If brand-kit.md exists in the project, read it and use its exact hex codes and typography choices.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `get_brand_assets` — pull the tenant's brand colours and typography for the slide prompts instead of reading brand-kit.md.
+- `create_canva_design` / `generate_ad_creative` — render the per-slide prompts directly instead of the user pasting each one into an external image generator.

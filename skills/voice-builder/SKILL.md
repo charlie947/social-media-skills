@@ -1,7 +1,7 @@
 ---
 name: voice-builder
 description: >
-  Build a personalised voice profile inside a Cowork project from a short interview plus 3 to 5 sample pieces of writing. Works for any content format: LinkedIn posts, newsletters, essays, emails, blog posts, tweets, or any other published writing. Use this skill at the start of any Cowork project where the user wants Claude to learn who they are and how they write before drafting new content. Trigger whenever the user says "build my voice", "learn my voice", "set up my content system", "onboard me", "train on my writing", "train on my posts", "I want Claude to sound like me", or drops a batch of writing samples into chat at the start of a project. Also trigger for first-time Cowork users who need a voice foundation before writing anything. Always produces two files (about-me.md and voice.md) saved into the project root.
+  Build a personalised voice profile inside your project or workspace from a short interview plus 3 to 5 sample pieces of writing. Works for any content format: LinkedIn posts, newsletters, essays, emails, blog posts, tweets, or any other published writing. Works with any LLM agent. Use this skill at the start of any project where the user wants the agent to learn who they are and how they write before drafting new content. Trigger whenever the user says "build my voice", "learn my voice", "set up my content system", "onboard me", "train on my writing", "train on my posts", "I want you to sound like me", "I want the AI to sound like me", or drops a batch of writing samples into chat at the start of a project. Also trigger for first-time users who need a voice foundation before writing anything. Always produces two files (about-me.md and voice.md) saved into the project root.
 ---
 
 # Voice Builder
@@ -27,13 +27,13 @@ This applies whether the user uploaded a .skill file, said "build my voice", pas
 
 ## Step 1. Run the About Me interview
 
-You MUST call the AskUserQuestion tool to ask these questions. Do not type the questions as chat text. Use the tool. The tool renders as an interactive form the user fills in, which is a better experience than typing answers into chat.
+Ask the user these questions. If your agent has an interactive multiple-choice tool (for example Claude's `AskUserQuestion`), use it to render them as a form, which is a better experience than typing answers into chat. If it does not, present the questions and options in chat as a numbered list and wait for the answers.
 
-AskUserQuestion supports a maximum of 4 questions per call, so send two calls: Batch 1 first, wait for answers, then Batch 2.
+Send the questions in two batches (some interactive tools cap at 4 questions per call): Batch 1 first, wait for answers, then Batch 2.
 
 ### Batch 1 (your very first action, no text before it)
 
-Call AskUserQuestion with this exact JSON structure for the questions parameter:
+Use this exact question set (the JSON below is ready for an interactive tool; in chat, ask the same questions and offer the same options):
 
 ```json
 [
@@ -85,7 +85,7 @@ Call AskUserQuestion with this exact JSON structure for the questions parameter:
 
 ### Batch 2 (send immediately after Batch 1 answers come back, no commentary between)
 
-Call AskUserQuestion again with:
+Ask the next set the same way:
 
 ```json
 [
@@ -140,7 +140,7 @@ Create about-me.md in the project root. Use this structure:
 [From question 6, topics or angles never to write about]
 ```
 
-Keep it under 300 words. Every line should be something Claude would reference when writing.
+Keep it under 300 words. Every line should be something the agent would reference when writing.
 
 ## Step 3. Ask for the samples
 
@@ -255,4 +255,10 @@ Two files in the project root:
 - Keep voice.md under 500 words.
 - British English throughout unless the samples are clearly American.
 - Never use em dashes in any output file or in any draft.
-- Do not produce an voice.md file. Absence signals live inside voice.md.
+- Do not produce a separate absence-signals file. Absence signals live inside voice.md.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it entirely if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `get_brand_assets` — pull the tenant's brand voice notes, tone words, and banned terms to seed `about-me.md` and `voice.md` before the interview. Treat anything returned as a starting draft the user confirms, never as final.

@@ -12,9 +12,9 @@ The moment this skill triggers, go straight to Step 1. Do not summarise the skil
 
 ## Step 1. Gather inputs
 
-Check the project for about-me.md and voice.md. Read both. If either is missing, tell the user to run the Voice Builder skill first ("say build my voice"), then stop.
+Check the project for the voice files, usually about-me.md and voice.md (a project may use different filenames for the same purpose, so scan for equivalents before deciding they are missing). Read both. If they are genuinely missing, tell the user to run the voice-builder skill first ("say build my voice"), then stop.
 
-If both files exist, call AskUserQuestion with this exact JSON:
+If both files exist, ask the user the questions below. If your agent has an interactive multiple-choice tool (for example Claude's `AskUserQuestion`), use it; otherwise ask them in chat with the same options:
 
 ```json
 [
@@ -44,7 +44,7 @@ If both files exist, call AskUserQuestion with this exact JSON:
 Based on the answers:
 - "Paste a context dump": wait for the user to paste, extract the core idea, then proceed to Step 2
 - "I have a topic in mind": wait for the user to type it, then proceed to Step 2
-- "Suggest topics for me": read about-me.md topic pillars and voice.md, suggest 5 specific topics with a one-line angle for each, then use AskUserQuestion to let them pick one
+- "Suggest topics for me": read about-me.md topic pillars and voice.md, suggest 5 specific topics with a one-line angle for each, then ask the user to pick one (with an interactive tool such as Claude's `AskUserQuestion` if available, otherwise in chat)
 - "I will paste examples": wait for reference posts, note the structural patterns, then proceed
 - "Use my training posts": reference whatever posts are already in the project
 
@@ -56,7 +56,7 @@ Before writing, research the topic. Look for:
 - Real examples or case studies
 - Common misconceptions to challenge
 
-Then present a post plan. Call AskUserQuestion:
+Then present a post plan. Ask the user to choose (use an interactive tool such as Claude's `AskUserQuestion` if available, otherwise ask in chat):
 
 ```json
 [
@@ -128,3 +128,10 @@ Then say:
 - Do not add engagement bait CTAs unless they appear in voice.md.
 - Keep posts between 150 and 300 words unless the user requests otherwise.
 - Plan before writing. Never skip Step 2.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `get_brand_assets` — pull the tenant's tone words and banned terms to reinforce the voice files before drafting.
+- `publish_social_post` — once the user says "ship it", publish the final post to LinkedIn, Instagram, or X instead of only saving it. Always confirm the target channel and show the final text before publishing.

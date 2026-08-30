@@ -12,9 +12,9 @@ When this skill triggers, go straight to Step 1. Do not summarise. Do not explai
 
 ## Step 1. Gather inputs
 
-Check the project for about-me.md. If it exists, pre-fill name, audience, topics, and POV from it. Skip those questions and tell the user what you pulled.
+Check the project for about-me.md (or your project's equivalent voice files). If it exists, pre-fill name, audience, topics, and POV from it. Skip those questions and tell the user what you pulled.
 
-Call AskUserQuestion in two batches.
+Ask the user the questions below in two batches. If your agent has an interactive multiple-choice tool (for example Claude's `AskUserQuestion`), use it to render each batch as a form; otherwise present the questions and options in chat and wait for the answers.
 
 ### Batch 1
 
@@ -114,7 +114,7 @@ Option 2 (Pain-focused): [problem + audience]
 Option 3 (Differentiator): [unique angle + audience]
 ```
 
-Then call AskUserQuestion to let the user pick:
+Then ask the user to pick one (use an interactive tool such as Claude's `AskUserQuestion` if available, otherwise ask in chat):
 
 ```json
 [
@@ -204,7 +204,7 @@ No subtitles. No internal LinkedIn posts. No "DM me" items.
 
 ## Step 6. Visual Design Brief
 
-Output 4 separate image generation prompts, each in its own code block. Each prompt must be fully self-contained and work when pasted into Gemini as a standalone request.
+Output 4 separate image generation prompts, each in its own code block. Each prompt must be fully self-contained and work when pasted into any image generation model (Gemini, or whichever your user prefers) as a standalone request.
 
 State the brand colours at the top:
 - Primary hex: [user-provided or suggested]
@@ -248,7 +248,7 @@ The prompt must:
 
 After all 4 prompts, say:
 
-> Copy each prompt into a new Gemini chat one at a time. For the banner and profile picture, attach your headshot alongside the prompt. The featured tiles do not need a photo.
+> Copy each prompt into your image generator one at a time (Gemini works well). For the banner and profile picture, attach your headshot alongside the prompt. The featured tiles do not need a photo.
 
 ## Rules
 
@@ -261,3 +261,10 @@ After all 4 prompts, say:
 - Never use em dashes.
 - British English throughout.
 - Do NOT offer to write a launch post or engagement strategy after the design brief. End at the design brief.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `get_brand_assets` — pull the tenant's brand colours, logo, and fonts to fill the Visual Design Brief instead of asking for hex codes.
+- `create_canva_design` / `generate_ad_creative` — render the 4 image prompts (banner, profile picture, 2 featured tiles) directly instead of the user pasting them into an external image generator.

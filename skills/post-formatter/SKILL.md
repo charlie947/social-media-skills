@@ -12,7 +12,7 @@ When this skill triggers, go straight to Step 1. Do not summarise. Start input g
 
 ## Step 1. Gather inputs
 
-Call AskUserQuestion:
+Ask the user the questions below. If your agent has an interactive multiple-choice tool (for example Claude's `AskUserQuestion`), use it; otherwise ask them in chat with the same options:
 
 ```json
 [
@@ -96,3 +96,9 @@ After the post, ask:
 - British English unless voice.md specifies otherwise.
 - If the user has voice.md in the project, tune tone and rhythm to match it.
 - If a trio is used, it has exactly three items. Not two, not four.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- `publish_social_post` — publish the finished post to LinkedIn, Instagram, or X. Confirm the channel and show the final text before publishing.

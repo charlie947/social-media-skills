@@ -1,7 +1,7 @@
 ---
 name: niche-research
 description: >
-  Surface the 20 most relevant stories in a niche from the last 7 days using Claude for Chrome. Verified dates, real links, shareable angles. Claude drives the browser to scroll Reddit, X and run Google searches — exactly like a human researcher would. Use this skill whenever the user says "research my niche", "what's trending", "find stories", "this week's news", "content research", or drops a niche and asks what's happening in it. Requires the Claude for Chrome extension to be enabled for live browsing.
+  Surface the 20 most relevant stories in a niche from the last 7 days using live browsing. Verified dates, real links, shareable angles. The agent drives a browser to scroll Reddit, X and run Google searches, exactly like a human researcher would. Use this skill whenever the user says "research my niche", "what's trending", "find stories", "this week's news", "content research", or drops a niche and asks what's happening in it. Requires a browser-automation capability (a browser extension such as Claude for Chrome, a Playwright MCP server, or any equivalent your agent has); falls back to web search and fetch tools.
 ---
 
 # Niche Research
@@ -12,18 +12,18 @@ When this skill triggers, go straight to Step 1. Do not summarise the research m
 
 ## Prerequisites
 
-This skill needs live browsing. Use this order of preference:
+This skill needs live browsing. Use whichever of these your agent has, in this order of preference:
 
-1. **Claude for Chrome extension** (preferred). Check that the extension is enabled and Claude has permission to browse on the current tab. If not, tell the user:
-   > Enable the Claude for Chrome extension and open a blank tab. I need to drive the browser to scroll Reddit, X, and run Google searches with verified dates.
-2. **Playwright MCP** as a fallback if the Claude for Chrome extension is not available.
-3. **WebSearch + WebFetch tools** as a last resort (less thorough on feed scrolling).
+1. **A browser-automation extension** (preferred), such as Claude for Chrome or any equivalent your agent supports. Check that it is enabled and has permission to browse the current tab. If it is not available or not permitted, tell the user:
+   > I need a browser-automation capability to drive the browser and scroll Reddit, X, and run Google searches with verified dates. Enable your browser extension (for example Claude for Chrome) and open a blank tab, or let me fall back to web search.
+2. **A browser-automation MCP server** (for example Playwright MCP) as a fallback if no extension is available.
+3. **Web search and fetch tools** as a last resort (less thorough on feed scrolling).
 
 Pick the best available path and continue.
 
 ## Step 1. Gather the niche
 
-Call AskUserQuestion:
+Ask the user for the niche. If your agent has an interactive multiple-choice tool (for example Claude's `AskUserQuestion`), use it; otherwise ask in chat with the same options:
 
 ```json
 [
@@ -121,6 +121,12 @@ After the table, ask:
 - Verify every publish date before including an item. No shortcuts.
 - Table only at the end. No commentary, no summary paragraph.
 - If fewer than 20 themes pass the filter, say so. Do not pad with weak items.
-- If Claude for Chrome is not available and neither Playwright MCP nor WebSearch can cover feed scrolling properly (Reddit and X), tell the user what is missing rather than faking the scan.
+- If no browser-automation capability is available and web search cannot cover feed scrolling properly (Reddit and X), tell the user what is missing rather than faking the scan.
 - British English throughout. DD/MM/YYYY date format.
 - Never use em dashes.
+
+## Dopa integration (optional)
+
+Additive layer for Dopa users. Skip it if you run this on Claude or any other agent: the skill works unchanged without it.
+
+- No direct Dopa tool. Any row in the output table can be handed to the post-writer or post-formatter skill, which can then publish via `publish_social_post`.
