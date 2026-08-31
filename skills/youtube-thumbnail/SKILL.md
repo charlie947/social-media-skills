@@ -80,9 +80,9 @@ Then ask:
 
 > Here's the brief. Say "generate" to output the image prompt or tell me what to change.
 
-## Step 4. Output the Gemini prompt
+## Step 4. Choose the image provider
 
-Once approved, output the image generation prompt in a code block:
+Gemini remains the default. Offer Atlas Cloud only when the user wants API-based generation. Once approved, output the image generation prompt in a code block:
 
 ```
 Using the attached reference photo of me, generate a YouTube thumbnail at 1280 x 720 pixels (16:9).
@@ -112,9 +112,20 @@ Constraints:
 - High contrast between face, text, and background
 ```
 
-Tell the user:
+For Gemini, tell the user:
 
 > Paste this into a new Gemini chat, attach your reference photo, enable Create Image, and select Nano Banana. Generate at 1280x720.
+
+For Atlas Cloud, check `ATLASCLOUD_API_KEY`, write the approved prompt to `thumbnail-prompt.txt` in the project root, then run from this skill directory:
+
+```bash
+python scripts/generate_atlas.py \
+  --reference /path/to/reference-photo.png \
+  --prompt-file /path/to/project/thumbnail-prompt.txt \
+  --output /path/to/project/youtube-thumbnail.png
+```
+
+This uses `google/nano-banana-2-lite/edit` at 16:9 and 1K. It uploads the reference image for temporary generation use, submits one generation request, polls the prediction endpoint, and saves `youtube-thumbnail.png` in the project root. Do not claim the script produces native 1280x720 output. Resize the result separately only when the user asks.
 
 ## Step 5. Offer the next move
 
@@ -130,3 +141,5 @@ Tell the user:
 - British English unless voice.md specifies otherwise.
 - If brand-kit.md is in the project, read it and use exact brand colours.
 - Recommend the user keep a consistent thumbnail style across videos for channel recognition.
+- Always keep Gemini as the default provider. Use Atlas Cloud only when the user selects it.
+- Never retry an Atlas Cloud generation POST. Retry only prediction GET requests through the script's bounded polling.
