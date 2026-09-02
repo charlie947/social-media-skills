@@ -65,6 +65,7 @@ See each skill's `SKILL.md` for trigger phrases, inputs, and dependencies.
 | [pinned-comment](skills/pinned-comment/) | Meme-style pinned comments with a matching image generation prompt. |
 | [hook-generator](skills/hook-generator/) | 6 clickbait-style two-line hook variations per topic. |
 | [post-formatter](skills/post-formatter/) | Topic to ready-to-publish post using PAS, AIDA, BAB, STAR, or SLAY. |
+| [bulkpublish-social-publishing](skills/bulkpublish-social-publishing/) | Adapt, review, schedule, and publish approved multi-platform content through BulkPublish. |
 | [content-matrix](skills/content-matrix/) | Pair your pillars with 8 formats for 32+ post ideas in one table. Justin Welsh style. |
 | [niche-research](skills/niche-research/) | Drive Claude for Chrome to scroll Reddit, X, and Google with verified dates. Surfaces the 20 most relevant stories in your niche from the last 7 days. |
 | [gemini-infographic](skills/gemini-infographic/) | The whiteboard style that pulled 480k impressions from 3 posts. |
