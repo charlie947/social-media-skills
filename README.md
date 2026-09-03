@@ -71,6 +71,7 @@ See each skill's `SKILL.md` for trigger phrases, inputs, and dependencies.
 | [gemini-carousel](skills/gemini-carousel/) | Slide-by-slide carousel generator with an approval gate. |
 | [quote-post](skills/quote-post/) | Claude writes the quote, Gemini recreates the image with the quote baked in. |
 | [analytics-dashboard](skills/analytics-dashboard/) | LinkedIn Analytics export to interactive React dashboard plus 5 data-backed recommendations. |
+| [post-publisher](skills/post-publisher/) | Publish or schedule the finished post to LinkedIn, Instagram, X, Threads, TikTok, YouTube and more in one call via Upload-Post. Previews the payload, waits for approval, reports per platform. |
 <!-- SKILLS:END -->
 
 ## Installation
@@ -129,6 +130,7 @@ Once installed, ask Claude to help with content tasks and it will pick the right
 "Turn this outlier Reel into a script" → reels-scripting
 "I need a thumbnail for 'How I fired my team'" → youtube-thumbnail
 "Write me a pinned comment" → pinned-comment
+"Publish this" or "schedule this for Monday" → post-publisher
 ```
 
 ## Skill Categories
@@ -162,6 +164,9 @@ Once installed, ask Claude to help with content tasks and it will pick the right
 ### Analytics
 - `analytics-dashboard` — LinkedIn export to dashboard + 5 recommendations
 
+### Publishing
+- `post-publisher` — publish or schedule the approved post to 9 platforms through Upload-Post, with a preview and approval gate
+
 ## Prerequisites
 
 A few skills need external services. Set these environment variables before use:
@@ -170,12 +175,15 @@ A few skills need external services. Set these environment variables before use:
 |---|---|
 | `APIFY_API_TOKEN` | post-scorer, reels-scripting |
 | `GOOGLE_AI_API_KEY` | reels-scripting (Gemini 2.5 Flash video analysis) |
+| `UPLOAD_POST_API_KEY` | post-publisher (free plan: 10 uploads a month, no card) |
+| `UPLOAD_POST_PROFILE` | post-publisher (optional, default profile name) |
 
 Set them with:
 
 ```bash
 export APIFY_API_TOKEN=your_token
 export GOOGLE_AI_API_KEY=your_key
+export UPLOAD_POST_API_KEY=your_key
 ```
 
 The image generation skills (`gemini-infographic`, `gemini-carousel`, `quote-post`, `youtube-thumbnail`, `profile-optimizer`) output ready-to-paste prompts. You run them in a separate Gemini chat with Create Image enabled. No API key needed.
