@@ -71,6 +71,7 @@ See each skill's `SKILL.md` for trigger phrases, inputs, and dependencies.
 | [gemini-carousel](skills/gemini-carousel/) | Slide-by-slide carousel generator with an approval gate. |
 | [quote-post](skills/quote-post/) | Claude writes the quote, Gemini recreates the image with the quote baked in. |
 | [analytics-dashboard](skills/analytics-dashboard/) | LinkedIn Analytics export to interactive React dashboard plus 5 data-backed recommendations. |
+| [fact-checker](skills/fact-checker/) | Verify every claim in a draft against primary sources before it publishes. Per-claim verdicts, voice-matching rewrites, no API keys. |
 <!-- SKILLS:END -->
 
 ## Installation
@@ -161,6 +162,9 @@ Once installed, ask Claude to help with content tasks and it will pick the right
 
 ### Analytics
 - `analytics-dashboard` — LinkedIn export to dashboard + 5 recommendations
+
+### Quality gate
+- `fact-checker` — per-claim primary-source verification before anything publishes
 
 ## Prerequisites
 
