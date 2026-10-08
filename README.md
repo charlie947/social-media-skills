@@ -4,7 +4,7 @@
 
 # Social Media Skills for AI Agents
 
-17 standalone public skills for **Codex and Claude**: user voice, LinkedIn writing, research, analytics, Reel scripting and Gemini image prompts. This repository is a public toolkit, not the complete private LinkedIn AI OS, its Figma production pipeline, or the maintainer's accounts and configuration.
+18 standalone public skills for **Codex and Claude**: user voice, LinkedIn writing, research, analytics, Reel scripting and Gemini image prompts. This repository is a public toolkit, not the complete private LinkedIn AI OS, its Figma production pipeline, or the maintainer's accounts and configuration.
 
 Built by [Charlie Hills](https://charliehills.substack.com). Subscribe to the [MarTech AI newsletter](https://charliehills.substack.com) for weekly breakdowns of how this system works in practice.
 
@@ -65,6 +65,7 @@ See each skill's `SKILL.md` for trigger phrases, inputs, and dependencies.
 | [pinned-comment](skills/pinned-comment/) | Meme-style pinned comments with a matching image generation prompt. |
 | [hook-generator](skills/hook-generator/) | 6 concise hook angles using supplied facts and genuine author experience. |
 | [post-formatter](skills/post-formatter/) | Topic to ready-to-publish post using PAS, AIDA, BAB, STAR, or SLAY. |
+| [bulkpublish-social-publishing](skills/bulkpublish-social-publishing/) | Adapt, review, schedule, and publish approved multi-platform content through BulkPublish. |
 | [content-matrix](skills/content-matrix/) | Pair your 3 to 5 pillars with 8 formats for 24 to 40 post ideas. |
 | [niche-research](skills/niche-research/) | Find up to 20 dated stories from the last 7 days with available web/browser tools and explicit source coverage. |
 | [gemini-infographic](skills/gemini-infographic/) | Create a whiteboard infographic brief and Gemini prompt. |
@@ -81,7 +82,7 @@ In Codex, ask:
 
 > Use skill-installer to install voice-builder and post-writer from charlie947/social-media-skills, paths skills/voice-builder and skills/post-writer.
 
-Install any of the 17 named folders the same way. The existing installer refuses an existing destination. Continue in a fresh task/turn, confirm the skill appears in the available skills and check its loaded path before use. Installation does not run onboarding or transfer accounts.
+Install any of the 18 named folders the same way. The existing installer refuses an existing destination. Continue in a fresh task/turn, confirm the skill appears in the available skills and check its loaded path before use. Installation does not run onboarding or transfer accounts.
 
 ### Codex: project-local copy
 
