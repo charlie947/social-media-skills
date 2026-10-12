@@ -26,6 +26,10 @@ Browser feed access and indexed web search are different evidence surfaces. If f
 
 Never scrape comments or replies on any platform. Read original post bodies and article text only. Aggregate engagement counts may be recorded when visible. Do not enable comment collection through an actor option.
 
+### Optional BrowserAct CLI route
+
+If the user chooses BrowserAct and its CLI and `browser-act` skill are available, read `references/browseract.md` before using it for source access in Step 2. It can supply article text or scoped original post content to the same research workflow. It is not required. Keep other available research tools and the supplied-source fallback. Do not install tools or change accounts just to use this route.
+
 ## Step 1. Gather the niche
 
 Call AskUserQuestion:
