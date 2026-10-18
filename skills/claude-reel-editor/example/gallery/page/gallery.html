@@ -1,0 +1,36 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Component gallery</title></head><body>
+<!-- One beat per component the example reel does not use. node scripts/storyboard.js example/gallery shoots them all. -->
+<script src="../../../engine/brand.js"></script>
+<script src="../../../engine/motion.js"></script>
+<script src="../../../engine/ui.js"></script>
+<script src="../../../engine/engine.js"></script>
+<script src="../../../components/dropzone.js"></script>
+<script src="../../../components/filmstrip.js"></script>
+<script src="../../../components/countup.js"></script>
+<script src="../../../components/style-transfer.js"></script>
+<script src="../../../components/codedemo.js"></script>
+<script src="data.js"></script>
+<script>
+const A = '../../assets/';
+const FR = Array.from({ length: 16 }, (_, i) => `${A}frame-${String(i).padStart(2, '0')}.svg`);
+const REEL = {
+  title: 'Component gallery',
+  beats: [
+    { a: 0, b: 2.4, lay: 'split', still: 2.2, move: 'dropZone: the raw clip flies in on an arc, the waveform rises, bad sections lift out, two files fly in',
+      draw: t => dropZone(t, { start: 0, dropAt: .3, clip: A + 'raw.svg', clipLabel: 'raw.mp4 · 0:19', waveAt: .75, badAt: 1.4, files: [{ name: 'cut-audio.wav', icon: 'wave', at: .8 }, { name: 'words.json', icon: 'doc', at: 1.1 }] }) },
+    { a: 2.4, b: 4.6, lay: 'split', still: 4.4, move: 'filmstripScan: frames step under the scanner, each ticked, the centre one lifts on the stop word',
+      draw: t => filmstripScan(t, { frames: FR, start: 2.4, stopAt: 4.0 }) },
+    { a: 4.6, b: 7.0, lay: 'split', still: 6.8, move: 'cutStrip: the pauses snap shut under a playhead, a graphic rises out of each clip, the row locks with a tick',
+      draw: t => cutStrip(t, { clips: [1, 2, 3, 4, 5, 6].map(i => `${A}clip-${i}.svg`), graphics: [1, 2, 3, 4, 5, 6].map(i => `${A}gfx-${i}.svg`), start: 4.6, cutAt: 4.8, riseAt: 5.6, lockAt: 6.6 }) },
+    { a: 7.0, b: 9.0, lay: 'split', still: 8.8, move: 'countUp x2: 29 viral reels counts up, fades, then 13 creators lands below',
+      // a count-up sits on top of what it counts: here a tilted wall of the frames it is counting, each slamming in from deep
+      draw: t => camH(t, 7.0, `<div style="position:absolute;inset:0;perspective:1800px"><div style="position:absolute;inset:0;transform:rotateX(18deg) rotateY(-14deg);transform-style:preserve-3d">${FR.slice(0, 12).map((f, i) => `<div style="position:absolute;left:${90 + (i % 6) * 152}px;top:${200 + Math.floor(i / 6) * 330}px;width:140px;height:249px;border-radius:18px;overflow:hidden;box-shadow:${BRAND.shadow};${slam(t, 7.05 + i * .06, { z: -900, rx: -40, y: 80 })};filter:grayscale(${f2(P(t, 8.0, .3) * .7)})">${pic(f)}</div>`).join('')}</div></div>`)
+        + countUp(t, { n: 29, label: 'viral reels', at: 7.1, outAt: 8.0, x: 310, y: 330 }) + countUp(t, { n: 13, label: 'creators', at: 8.1, x: 330, y: 560, w: 340 }) },
+    { a: 9.0, b: 11.4, lay: 'split', still: 11.2, move: 'styleTransfer: the reference slams in, the flat frame slams in grey, three chips fly across, both face the camera',
+      draw: t => styleTransfer(t, { from: A + 'style.svg', to: A + 'flat.svg', start: 9.0, fromAt: 9.05, toAt: 9.4, chips: [9.8, 10.0, 10.2], faceAt: 10.8 }) },
+    { a: 11.4, b: 14, lay: 'split', still: 13.6, move: 'codeDemo: the prompt types, sends, two tool lines land, a file lifts out of the window',
+      draw: t => codeDemo(t, { start: 11.4, prompt: '/init', typeFrom: 11.7, typeTo: 12.1, sendAt: 12.3, lines: [{ at: 12.45, tool: 'Read', arg: '2 files' }, { at: 12.75, tool: 'Write', arg: 'NOTES.md', res: 'Wrote 24 lines', resAt: 13.05 }], fileAt: 13.05 }) },
+  ],
+};
+startPage();
+</script></body></html>

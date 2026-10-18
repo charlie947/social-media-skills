@@ -61,6 +61,7 @@ See each skill's `SKILL.md` for trigger phrases, inputs, and dependencies.
 | [graphic-designer](skills/graphic-designer/) | Create HTML/CSS plus an inspected PNG when rendering is available, or a Gemini image prompt. |
 | [post-scorer](skills/post-scorer/) | Review against your supplied history or authorised Apify results, with an editorial-only fallback. |
 | [reels-scripting](skills/reels-scripting/) | Analyse a reference Reel via Apify + Gemini 2.5 Flash, or use supplied material. Draft and review a script in your voice. |
+| [claude-reel-editor](skills/claude-reel-editor/) | Turn one raw talking-head take into a finished Instagram reel with Claude Code: cut on silence, storyboard, one big 3D graphic per line, a frame check every 0.25s, render and export. Includes the engine, components, scripts and a test reel that renders end to end. |
 | [youtube-thumbnail](skills/youtube-thumbnail/) | Turn a video title into a branded YouTube thumbnail prompt for Gemini. |
 | [pinned-comment](skills/pinned-comment/) | Meme-style pinned comments with a matching image generation prompt. |
 | [hook-generator](skills/hook-generator/) | 6 concise hook angles using supplied facts and genuine author experience. |
