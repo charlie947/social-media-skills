@@ -46,6 +46,8 @@ If data is missing, offer:
 
 For an Apify run, `apimaestro/linkedin-profile-posts` is the existing provider route. Use a small requested batch (up to 100 posts). Request **post bodies and aggregate counts only**. Never scrape comments or replies, including through `deepScrape` or `numComments`. If the actor cannot exclude comment bodies, use a different verified post-only route or request an export. Do not run a comments scrape then discard it afterwards.
 
+Opt-in alternate provider route: `johnvc/linkedin-posts-api`. Use it only when the user chooses it, or when the existing route cannot meet the post-only / no-comment-body constraint. Keep the same batch cap (up to 100 posts), cost confirmation, and schema verification. Pass the author's public profile URL in `profileUrls` and set `maxPostsPerProfile` to the requested batch size. Read post body text plus aggregate reaction and comment counts from each row. Do not request or store comment reply bodies. Do not silently substitute this provider for the existing route.
+
 Save the resulting permitted post data under `outputs/post-scorer/` in the project with the author and collection date. If Apify is unavailable, preserve the draft and offer the export/editorial routes. Do not claim the history was fetched.
 
 ## Step 3. Analyse the top performers
