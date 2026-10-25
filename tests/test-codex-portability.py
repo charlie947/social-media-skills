@@ -19,7 +19,7 @@ readme = (ROOT / 'README.md').read_text()
 block = readme.split('<!-- CODEX-COPY:START -->')[1].split('<!-- CODEX-COPY:END -->')[0]
 command = re.search(r'```bash\n(.*?)\n```', block, re.S).group(1)
 skills = sorted((ROOT / 'skills').glob('*/SKILL.md'))
-assert len(skills) == 17
+assert len(skills) == 18
 
 with tempfile.TemporaryDirectory(prefix='public-skills-') as temporary:
     project = Path(temporary) / 'client project'
@@ -36,7 +36,7 @@ with tempfile.TemporaryDirectory(prefix='public-skills-') as temporary:
 
     install()
     installed = project / '.agents' / 'skills'
-    assert len(list(installed.glob('*/SKILL.md'))) == 17
+    assert len(list(installed.glob('*/SKILL.md'))) == 18
     for original in (ROOT / 'skills').rglob('*'):
         if original.is_file():
             assert (installed / original.relative_to(ROOT / 'skills')).read_bytes() == original.read_bytes()
@@ -88,7 +88,7 @@ with tempfile.TemporaryDirectory(prefix='public-skills-') as temporary:
             assert all(item['scope'] in ('repo', 'system') for item in entry['skills'])
             assert all(str(Path(item['path']).resolve()).startswith(str(Path(temporary).resolve()) + os.sep)
                        for item in entry['skills']), 'Inherited skills outside isolated project/HOME'
-            print('PASS: live Codex discovery of all 17 project skills; empty account/config HOME; no inherited user skills')
+            print('PASS: live Codex discovery of all 18 project skills; empty account/config HOME; no inherited user skills')
         finally:
             server.terminate()
             try:
@@ -141,7 +141,7 @@ for name in ['niche-research', 'post-scorer', 'reels-scripting']:
 scorer = (ROOT / 'skills/post-scorer/SKILL.md').read_text()
 assert 'Fallback benchmarks' not in scorer and 'Charlie Hills data' not in scorer
 assert 'render pending' in (ROOT / 'skills/graphic-designer/SKILL.md').read_text()
-print('PASS: 17 project-local copies and bundled references; clean HOME; consecutive-copy preservation; missing source failure; portable instruction contracts')
+print('PASS: 18 project-local copies and bundled references; clean HOME; consecutive-copy preservation; missing source failure; portable instruction contracts')
 print('NOT TESTED: provider access, generated content quality, visual acceptance, client activation')
 if '--codex' not in sys.argv:
     print('NOT TESTED: live assistant discovery (run with --codex on macOS/Linux)')
