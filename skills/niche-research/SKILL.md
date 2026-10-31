@@ -84,6 +84,16 @@ For each promising result:
 3. Verify it is within the last 7 days.
 4. If the date is missing, unclear, or older than 7 days, exclude it.
 
+Firecrawl is an optional route for this step. Check access with `firecrawl --status`. If it works, run each search above with the past-week filter:
+
+```bash
+firecrawl search "[niche] news" --tbs qdr:w --limit 10
+```
+
+Open only public article pages. Skip social posts and threads. Never collect comments or replies, including on article pages. Read each chosen article with `firecrawl scrape "<article-url>" --only-main-content --json`. Take the publish date from the article text or its published-time metadata. Ignore update dates. Then apply the same checks.
+
+If Firecrawl is missing, signed out or fails, use the other available tools. Do not install it or create an account without the user's approval. If the user asks for setup, point them to [Firecrawl agent onboarding](https://www.firecrawl.dev/agent-onboarding/SKILL.md?utm_source=social-media-skills&utm_medium=integration). It uses a free API key.
+
 ## Step 3. Synthesise into themes
 
 Collect a broad pool of verified, in-window items. Group related items into themes. Each theme may combine social discussion and news coverage.
