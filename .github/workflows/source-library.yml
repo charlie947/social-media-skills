@@ -1,0 +1,87 @@
+# Source Library — weekly automated run
+#
+# The "when" for the `source-library` skill. Mirrors skills/source-library/SCHEDULE.md.
+# Pulls the last 10 days of growth/GTM newsletters from Gmail, dedups against the
+# Gmail `Filed/SourceInbox` label, cleans + analyzes each, and files high-signal
+# sources into the Notion "Source Inbox" database (Status = New).
+#
+# Target: every Sunday 8:00 PM America/New_York.
+#   GitHub Actions cron is UTC-only (no DST awareness), so:
+#     0 0 * * 1  = 00:00 UTC Monday = 8:00 PM EDT Sunday (Mar–Nov, daylight time)
+#     1:00 UTC   = 8:00 PM EST Sunday (Nov–Mar, standard time)
+#   We schedule both so the run lands at ~8 PM local year-round; whichever fires
+#   first each week files the sources, the second is a cheap idempotent no-op
+#   (Gmail label dedup means already-filed threads are excluded — see SKILL.md Step 2).
+#
+# PREREQUISITES (see .github/workflows/source-library.md for full setup):
+#   - The `source-library` skill must exist on the branch this runs against
+#     (default branch). It currently lives on branch claude/peaceful-noether-jclzec
+#     — merge it to the default branch before relying on the schedule.
+#   - Repo secrets:
+#       ANTHROPIC_API_KEY  — Claude API key for the headless run.
+#       MCP_CONFIG_JSON    — full MCP server config (Gmail + Notion) WITH valid
+#                            auth/tokens. OAuth MCP servers do not re-authenticate
+#                            in CI, so this must carry working credentials.
+#
+# NOTE: SCHEDULE.md's *recommended* mechanism is a web Scheduled Session in the
+# claude.com/code UI (it reuses this environment's already-authenticated MCP
+# connections, so no secrets needed). This workflow is the in-repo fallback for
+# teams that want the schedule version-controlled and runnable headlessly.
+
+name: source-library-weekly
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"   # 8 PM EDT Sunday (daylight time)
+    - cron: "0 1 * * 1"   # 8 PM EST Sunday (standard time)
+  workflow_dispatch: {}    # manual "Run workflow" button for backfill / testing
+
+concurrency:
+  group: source-library
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Verify secrets are present
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MCP_CONFIG_JSON: ${{ secrets.MCP_CONFIG_JSON }}
+        run: |
+          missing=0
+          if [ -z "$ANTHROPIC_API_KEY" ]; then echo "::error::ANTHROPIC_API_KEY secret is not set"; missing=1; fi
+          if [ -z "$MCP_CONFIG_JSON" ]; then echo "::error::MCP_CONFIG_JSON secret is not set"; missing=1; fi
+          if [ "$missing" -ne 0 ]; then exit 1; fi
+
+      - name: Write MCP config
+        env:
+          MCP_CONFIG_JSON: ${{ secrets.MCP_CONFIG_JSON }}
+        run: |
+          printf '%s' "$MCP_CONFIG_JSON" > "$RUNNER_TEMP/mcp.json"
+          echo "Wrote MCP config to $RUNNER_TEMP/mcp.json"
+
+      - name: Run source-library skill (headless)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "Run the source-library skill. Pull the last 10 days of newsletters from Gmail, dedup against the Filed/SourceInbox label, clean + analyze each, file new high-signal sources into the Notion Source Inbox database (Status = New), and end with the run summary (N found / M new / R rejected / D duplicates). This is the scheduled Sunday run — run unattended, human-in-the-loop OFF. Only stop if a required MCP server is missing or a credential fails." \
+            --mcp-config "$RUNNER_TEMP/mcp.json" \
+            --permission-mode acceptEdits \
+            --allowedTools "Skill,Read,Glob,Grep,Task,mcp__Gmail__search_threads,mcp__Gmail__get_thread,mcp__Gmail__list_labels,mcp__Gmail__create_label,mcp__Gmail__label_thread,mcp__Notion__notion-create-pages,mcp__Notion__notion-fetch" \
+            --verbose
