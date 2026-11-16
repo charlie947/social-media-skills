@@ -51,13 +51,24 @@ If "You decide": analyse the post. If it contains numbered steps, frameworks, co
 ## Path A: HTML/CSS structured graphic
 
 Design constraints:
-- 1200 x 1400 pixels by default for this HTML route; follow an explicit user size
-- Dark background (#1a1a2e or user's brand colour) with high contrast text
-- Clean sans-serif font (Inter, system-ui)
-- White or light text on dark background
-- One accent colour for highlights and dividers
-- 40px minimum padding on all sides
-- No stock photo backgrounds
+Two styles, nothing else
+
+-Twilight (default, 4 posts a week)Background gradient at 155°: #E4D7FF (lilac) → #F3DDF1 (pink) → #FFE6D6 (peach)Accent (D++ “++”, question line, key number, main bar): #6B3FD0Secondary bar / highlight: #B98CFFText: #1E2130; small text and sources: #5A6270Data card: white at about 78% opacity, white border, rounded corners
+-Electric violet (1 big post a week: a headline number or an announcement)Gradient at 150°: #3A1FB8 → #7B3FF2 → #E86FC1All text white; highlight color #FFE27A (yellow)Card: white at about 12% opacity with a thin white border
+-No dark navy backgrounds, no decorative circles or half-moons, no other colors.
+
+Layout (same on every post)
+-Size: 1080 × 1350 (4:5 portrait, which takes up more of the mobile feed than a square)
+-Margins: 90 px on all sides
+-Top to bottom:D++ logo, top leftA short question in purple (the hook)Headline, max 2 linesWhite data card (numbers, bars or 3 short points)A UAE line at the bottom of the card whenever the stat is globalFooter: source on the left, dplpl.com on the right
+-Font: Space Grotesk only. Headline about 84–96 px, bold. Numbers 56 px or bigger. Body text 30–34 px. Nothing smaller than 22 px, so it’s readable on a phone.
+
+Carousels (for longer stories, like the “strategy is right” post)
+-Same Twilight background on every slide, one idea per slide, headline at least 60 px
+-Slide 1 = hook, last slide = takeaway + “Follow D++ for more”
+-5–7 slides max
+
+
 - Let the post content dictate how many sections the graphic has. 3 steps = 3 blocks. 10 tips = 10 blocks. The constraint is legibility, not a fixed number. Every element must be large enough to read on a mobile screen.
 
 Single self-contained HTML file with inline CSS. Include viewport meta tag.
@@ -90,7 +101,7 @@ Generate a single image of a physical, hand-drawn infographic on a large whitebo
 
 Crucial Style Instructions (Read First):
 Medium: The image must look like a photograph of a real whiteboard or large paper notepad.
-Texture: All elements must look created by hand using colored marker pens (black, blue, red, green) and highlighters (yellow/orange). Lines should be slightly imperfect, wobbly, and have the texture of ink on a surface.
+Texture: All elements must look created by hand using colored marker pens (twilight theme, or electric violet theme) and highlighters (yellow/orange). Lines should be slightly imperfect, wobbly, and have the texture of ink on a surface.
 No Digital Fonts: All text, headings, and bullet points must appear handwritten or hand-printed in marker pen.
 
 Layout: Structure the 1080x1350 image as follows:
@@ -118,7 +129,7 @@ Generate a professional infographic image at 1080x1350 pixels.
 Style: Clean, modern, editorial. Flat design with sharp edges and strong typography. No 3D effects, no gradients, no stock photos.
 
 Colour palette:
-- Background: [primary brand colour or dark neutral]
+- Background: [twilight theme, or electic blue]
 - Text: [white or high-contrast colour]
 - Accent: [secondary brand colour]
 
@@ -154,4 +165,4 @@ Report the actual state: **HTML render pending**, **HTML + inspected PNG**, or *
 - Whiteboard style: always hand-drawn marker look, imperfect lines, coloured pens, notebook/whiteboard texture.
 - Branded style: always clean, flat, modern, using the user's brand colours.
 - Never use em dashes in any output.
-- British English throughout.
+- American English throughout.
